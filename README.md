@@ -3,7 +3,15 @@
 **Event**: TTU Agentic Revolution Challenge (November 14, 2025)  
 **Challenge**: Contoso Consulting Group - Time & Expense Tracking with Agentic AI
 
-## 🚀 Overview
+## � About
+
+**Developer**: Arturo Quiroga  
+**Role**: Cloud Solution Architect - Data & AI, Microsoft  
+**Location**: Toronto, Ontario, Canada
+
+**Challenge Selection**: For this workshop, I chose the **Contoso Consulting Group (CCG) Time & Expense Tracking** scenario. This challenge focuses on using Agentic AI to automatically detect missing billable time by cross-referencing calendar events with timesheet entries—a common pain point for consulting firms that results in significant revenue leakage. I selected this scenario because it demonstrates real-world business value through intelligent automation, showcases the Microsoft Agent Framework's capabilities with function calling and multi-turn conversations, and addresses a tangible problem that every consulting organization faces.
+
+## �🚀 Overview
 
 This project demonstrates an intelligent AI agent built with **Microsoft Agent Framework** that helps consultants identify missing billable time by automatically cross-referencing calendar events with timesheet entries.
 
@@ -46,7 +54,7 @@ This project demonstrates an intelligent AI agent built with **Microsoft Agent F
 ## 🛠️ Technology Stack
 
 - **Microsoft Agent Framework** - Latest AI orchestration framework (replaces Semantic Kernel)
-- **Azure OpenAI** - GPT-4/GPT-4o for agent reasoning
+- **Azure OpenAI** - GPT-4.1 or GPT-5-mini for agent reasoning
 - **Python 3.13** - Core runtime
 - **Streamlit** - Interactive web UI
 - **Function Tools** - Simple Python functions for calendar/timesheet access
