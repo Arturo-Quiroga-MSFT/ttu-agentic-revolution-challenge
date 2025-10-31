@@ -1,0 +1,53 @@
+graph TB
+    subgraph "User Interface Layer"
+        UI1[Streamlit Web UI<br/>streamlit_app.py]
+        UI2[Console Demo<br/>agent_demo.py]
+    end
+
+    subgraph "Microsoft Agent Framework"
+        Agent[ChatAgent<br/>gpt-4.1/gpt-5-mini Reasoning]
+        Thread[AgentThread<br/>Conversation Memory]
+        Tools[Function Tools Registry]
+    end
+
+    subgraph "Function Tools"
+        T1[get_calendar_events<br/>Retrieves calendar data]
+        T2[get_timesheet_entries<br/>Retrieves timesheet data]
+        T3[suggest_timesheet_entry<br/>Proposes missing entries]
+        T4[calculate_revenue_impact<br/>Computes business value]
+    end
+
+    subgraph "Data Layer"
+        D1[(Calendar Data<br/>calendar_sample.json)]
+        D2[(Timesheet Data<br/>timesheet_sample.json)]
+    end
+
+    subgraph "AI Model"
+        Azure[Azure OpenAI<br/>gpt-4.1/gpt-5-mini]
+    end
+
+    UI1 -->|User Query| Agent
+    UI2 -->|User Query| Agent
+    Agent -->|Maintains Context| Thread
+    Agent -->|Selects & Calls| Tools
+    Tools -->|Register| T1
+    Tools -->|Register| T2
+    Tools -->|Register| T3
+    Tools -->|Register| T4
+    T1 -->|Read| D1
+    T2 -->|Read| D2
+    T3 -->|Read| D1
+    T3 -->|Read| D2
+    T4 -->|Calculate| T2
+    Agent <-->|API Calls| Azure
+    Thread -->|Context| Agent
+    Tools -->|Results| Agent
+    Agent -->|Structured Response| UI1
+    Agent -->|Structured Response| UI2
+
+    style Agent fill:#0078d4,color:#fff
+    style Azure fill:#50e6ff,color:#000
+    style Thread fill:#00bcf2,color:#fff
+    style Tools fill:#68217a,color:#fff
+    style UI1 fill:#107c10,color:#fff
+    style UI2 fill:#107c10,color:#fff

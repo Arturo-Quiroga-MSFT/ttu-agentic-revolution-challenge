@@ -12,7 +12,7 @@ graph TB
     end
 
     subgraph "Microsoft Agent Framework"
-        Agent[ChatAgent<br/>GPT-4 Reasoning]
+        Agent[ChatAgent<br/>gpt-4.1/gpt-5-mini Reasoning]
         Thread[AgentThread<br/>Conversation Memory]
         Tools[Function Tools Registry]
     end
@@ -30,7 +30,7 @@ graph TB
     end
 
     subgraph "AI Model"
-        Azure[Azure OpenAI<br/>GPT-4]
+        Azure[Azure OpenAI<br/>gpt-4.1/gpt-5-mini]
     end
 
     UI1 -->|User Query| Agent
@@ -65,7 +65,7 @@ graph TB
 ```mermaid
 graph LR
     User[👤 User] -->|Query| Agent[🤖 ChatAgent<br/>Microsoft Agent Framework]
-    Agent -->|Reasoning| GPT[💭 GPT-4<br/>Azure OpenAI]
+    Agent -->|Reasoning| GPT[💭 gpt-4.1/gpt-5-mini<br/>Azure OpenAI]
     Agent -->|Calls| Tools[🔧 Function Tools]
     
     subgraph Tools
@@ -89,30 +89,30 @@ graph LR
 sequenceDiagram
     participant User
     participant ChatAgent
-    participant GPT4
+    participant GPT4.1/5-mini
     participant CalendarTool
     participant TimesheetTool
     participant SuggestionTool
 
     User->>ChatAgent: "Review my calendar and timesheet"
-    ChatAgent->>GPT4: Process query with instructions
-    GPT4->>ChatAgent: Decision: Call calendar function
+    ChatAgent->>GPT4.1/5-mini: Process query with instructions
+    GPT4.1/5-mini->>ChatAgent: Decision: Call calendar function
     ChatAgent->>CalendarTool: get_calendar_events("arturo@ccg.com")
     CalendarTool-->>ChatAgent: 7 events (14 hours total)
-    ChatAgent->>GPT4: Here's calendar data
-    GPT4->>ChatAgent: Decision: Call timesheet function
+    ChatAgent->>GPT4.1/5-mini: Here's calendar data
+    GPT4.1/5-mini->>ChatAgent: Decision: Call timesheet function
     ChatAgent->>TimesheetTool: get_timesheet_entries("arturo@ccg.com")
     TimesheetTool-->>ChatAgent: 2 entries (3.5 hours logged)
-    ChatAgent->>GPT4: Compare data
-    GPT4->>ChatAgent: Decision: Call suggestion function
+    ChatAgent->>GPT4.1/5-mini: Compare data
+    GPT4.1/5-mini->>ChatAgent: Decision: Call suggestion function
     ChatAgent->>SuggestionTool: suggest_timesheet_entry(...)
     SuggestionTool-->>ChatAgent: 5 missing entries (8 hours)
-    ChatAgent->>GPT4: Format response
-    GPT4->>ChatAgent: Structured analysis with rationale
+    ChatAgent->>GPT4.1/5-mini: Format response
+    GPT4.1/5-mini->>ChatAgent: Structured analysis with rationale
     ChatAgent->>User: "Found 8 missing hours worth $2,000..."
     User->>ChatAgent: "Yes, submit those entries"
-    ChatAgent->>GPT4: Process confirmation
-    GPT4->>ChatAgent: Confirm action
+    ChatAgent->>GPT4.1/5-mini: Process confirmation
+    GPT4.1/5-mini->>ChatAgent: Confirm action
     ChatAgent->>User: "✅ All 5 entries confirmed"
 ```
 
@@ -141,7 +141,7 @@ sequenceDiagram
 Use the **Simplified Architecture** diagram - it's clean and fits on a slide while showing the key components:
 - User interaction
 - ChatAgent (Microsoft Agent Framework)
-- GPT-4 reasoning
+- gpt-4.1/gpt-5-mini reasoning
 - 4 Function Tools
 - Data layer
 
@@ -174,7 +174,7 @@ If you want to show the step-by-step process, use the **Sequence Diagram** on a 
 - Same agent logic works with any data source
 
 **Layer 5 - AI Model**:
-- Azure OpenAI GPT-4
+- Azure OpenAI (gpt-4.1/gpt-5-mini)
 - Handles reasoning, function selection, response generation
 - Agent Framework manages all API communication
 
@@ -192,7 +192,7 @@ If you want to show the step-by-step process, use the **Sequence Diagram** on a 
 **Icons** (PowerPoint built-in):
 - 👤 User
 - 🤖 Agent
-- 💭 Brain/Thinking (GPT-4)
+- 💭 Brain/Thinking (gpt-4.1/gpt-5-mini)
 - 🔧 Tools
 - 📊 Data
 - 💰 Money (Revenue Impact)

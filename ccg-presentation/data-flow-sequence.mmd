@@ -1,0 +1,28 @@
+sequenceDiagram
+    participant User
+    participant ChatAgent
+    participant GPT4.1/5-mini
+    participant CalendarTool
+    participant TimesheetTool
+    participant SuggestionTool
+
+    User->>ChatAgent: "Review my calendar and timesheet"
+    ChatAgent->>GPT4.1/5-mini: Process query with instructions
+    GPT4.1/5-mini->>ChatAgent: Decision: Call calendar function
+    ChatAgent->>CalendarTool: get_calendar_events("arturo@ccg.com")
+    CalendarTool-->>ChatAgent: 7 events (14 hours total)
+    ChatAgent->>GPT4.1/5-mini: Here's calendar data
+    GPT4.1/5-mini->>ChatAgent: Decision: Call timesheet function
+    ChatAgent->>TimesheetTool: get_timesheet_entries("arturo@ccg.com")
+    TimesheetTool-->>ChatAgent: 2 entries (3.5 hours logged)
+    ChatAgent->>GPT4.1/5-mini: Compare data
+    GPT4.1/5-mini->>ChatAgent: Decision: Call suggestion function
+    ChatAgent->>SuggestionTool: suggest_timesheet_entry(...)
+    SuggestionTool-->>ChatAgent: 5 missing entries (8 hours)
+    ChatAgent->>GPT4.1/5-mini: Format response
+    GPT4.1/5-mini->>ChatAgent: Structured analysis with rationale
+    ChatAgent->>User: "Found 8 missing hours worth $2,000..."
+    User->>ChatAgent: "Yes, submit those entries"
+    ChatAgent->>GPT4.1/5-mini: Process confirmation
+    GPT4.1/5-mini->>ChatAgent: Confirm action
+    ChatAgent->>User: "✅ All 5 entries confirmed"

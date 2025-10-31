@@ -1,0 +1,18 @@
+graph LR
+    User[👤 User] -->|Query| Agent[🤖 ChatAgent<br/>Microsoft Agent Framework]
+    Agent -->|Reasoning| GPT[💭 gpt-4.1/gpt-5-mini<br/>Azure OpenAI]
+    Agent -->|Calls| Tools[🔧 Function Tools]
+    
+    subgraph Tools
+        T1[📅 Calendar]
+        T2[⏱️ Timesheet]
+        T3[💡 Suggestions]
+        T4[💰 Revenue]
+    end
+    
+    Tools -->|Data| Data[(📊 Sample Data)]
+    Agent -->|Response| User
+
+    style Agent fill:#0078d4,color:#fff
+    style GPT fill:#50e6ff,color:#000
+    style Tools fill:#68217a,color:#fff
