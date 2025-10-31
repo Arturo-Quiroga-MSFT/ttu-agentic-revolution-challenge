@@ -287,7 +287,7 @@ def main():
     if st.session_state.demo_running and st.session_state.demo_type == "basic":
         st.markdown("### 📋 Running Basic Demo Scenario")
         
-        demo_query = "Please review my calendar and timesheet for November 13-14, 2025 and identify any missing time entries. My email is alice@ccg.com."
+        demo_query = "Please review my calendar and timesheet for November 13-15, 2025 and identify any missing time entries. My email is arturoqu@microsoft.com."
         
         st.session_state.messages.append({"role": "user", "content": demo_query})
         
@@ -316,29 +316,23 @@ def main():
     st.markdown("### 💡 Try These Questions")
     
     sample_questions = [
-        "📋 Review my calendar and timesheet for November 13-14, 2025. My email is alice@ccg.com.",
+        "📋 Review my calendar and timesheet for November 13-23, 2025. My email is arturoqu@microsoft.com.",
         "💰 Calculate the revenue impact for the missing billable hours you found.",
         "🤔 Which entries are billable vs non-billable?",
-        "� Can you help me understand my missing time entries?",
+        "🔍 Can you help me understand my missing time entries?",
         "✅ Yes, please proceed with submitting those missing timesheet entries."
     ]
     
-    cols = st.columns(5)
-    for idx, (col, question) in enumerate(zip(cols, sample_questions)):
-        with col:
-            # Extract emoji and first few words for button label
-            button_label = question.split()[0] + " " + " ".join(question.split()[1:4])
-            if len(question.split()) > 4:
-                button_label += "..."
-            
-            if st.button(button_label, key=f"sample_q_{idx}", use_container_width=True):
-                st.session_state.messages.append({"role": "user", "content": question})
-                with st.spinner("🤖 Agent thinking..."):
-                    response = asyncio.run(
-                        run_agent_query(st.session_state.agent, st.session_state.thread, question)
-                    )
-                    st.session_state.messages.append({"role": "agent", "content": response})
-                st.rerun()
+    # Display sample questions as full-width clickable buttons
+    for idx, question in enumerate(sample_questions):
+        if st.button(question, key=f"sample_q_{idx}", use_container_width=True):
+            st.session_state.messages.append({"role": "user", "content": question})
+            with st.spinner("🤖 Agent thinking..."):
+                response = asyncio.run(
+                    run_agent_query(st.session_state.agent, st.session_state.thread, question)
+                )
+                st.session_state.messages.append({"role": "agent", "content": response})
+            st.rerun()
     
     st.markdown("---")
     
@@ -374,7 +368,7 @@ def main():
     
     with col1:
         if st.button("📊 Check Missing Time", use_container_width=True):
-            query = "Please check for any missing time entries in my calendar and timesheet for alice@ccg.com."
+            query = "Please check for any missing time entries in my calendar and timesheet for arturoqu@microsoft.com."
             st.session_state.messages.append({"role": "user", "content": query})
             with st.spinner("🤖 Analyzing..."):
                 response = asyncio.run(

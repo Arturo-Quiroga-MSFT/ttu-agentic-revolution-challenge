@@ -186,7 +186,7 @@ async def main():
     await run_demo_scenario(
         agent,
         "Missing Time Detection (Primary Use Case)",
-        "Please review my calendar and timesheet for November 13-14, 2025 and identify any missing time entries. My email is alice@ccg.com.",
+        "Please review my calendar and timesheet for November 13-23, 2025 and identify any missing time entries. My email is arturoqu@microsoft.com.",
         thread=thread
     )
     

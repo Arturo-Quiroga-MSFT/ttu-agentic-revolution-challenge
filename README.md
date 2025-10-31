@@ -33,23 +33,58 @@ This project demonstrates an intelligent AI agent built with **Microsoft Agent F
 
 ```
 .
-├── ccg-demo/                          # Main demo application
+├── ccg-demo/                          # Single-agent demo (recommended starting point)
 │   ├── streamlit_app.py              # Web UI (Streamlit)
 │   ├── agent_demo.py                 # Console demo
 │   ├── calendar_plugin.py            # Calendar function tool
 │   ├── timesheet_plugin.py           # Timesheet function tools
-│   ├── calendar_sample.json          # Sample calendar data
+│   ├── calendar_sample.json          # Sample calendar data (Nov 13-23, 2025)
 │   ├── timesheet_sample.json         # Sample timesheet data
 │   ├── requirements.txt              # Python dependencies
 │   ├── .env.example                  # Environment variable template
 │   ├── README.md                     # Demo instructions
 │   └── DEMO_IMPROVEMENTS.md          # Enhancement documentation
+├── ccg-demo-multi-agent/              # Multi-agent architecture (advanced)
+│   ├── README.md                     # Multi-agent documentation
+│   ├── requirements.txt              # Dependencies
+│   ├── .env.example                  # Config template
+│   ├── agents/                       # Individual agent implementations
+│   │   ├── calendar_agent.py         # Calendar analysis specialist
+│   │   ├── timesheet_agent.py        # Timesheet validation specialist
+│   │   ├── suggestion_agent.py       # Recommendation specialist
+│   │   ├── revenue_agent.py          # Financial impact specialist
+│   │   └── orchestrator_agent.py     # Workflow coordinator
+│   ├── shared/                       # Shared data (symlinks to ccg-demo/)
+│   │   ├── calendar_sample.json      # -> ../../ccg-demo/calendar_sample.json
+│   │   └── timesheet_sample.json     # -> ../../ccg-demo/timesheet_sample.json
+│   ├── multi_agent_demo.py           # Console demo (coming soon)
+│   └── multi_agent_streamlit.py      # Streamlit UI (coming soon)
 ├── ccg-presentation/                  # Presentation materials
 │   ├── CCG_Readout.md                # 3-slide readout + script
-│   └── CCG_Readout.pptx              # PowerPoint presentation
+│   ├── CCG_Readout.pptx              # PowerPoint presentation
+│   ├── Architecture_Diagram.md       # Mermaid diagrams
+│   ├── PPT_Slide_Content.md          # Detailed slide content
+│   ├── solution-architecture.mmd     # Full architecture diagram
+│   ├── simplified-architecture.mmd   # Simple architecture diagram
+│   └── data-flow-sequence.mmd        # Sequence diagram
 └── Agentic_revolution_challenge_materials/  # Event materials
     └── ...
 ```
+
+### Implementation Approaches
+
+**Single-Agent (`ccg-demo/`):**
+- ✅ Simpler implementation, easier to understand
+- ✅ All-in-one agent with multiple function tools
+- ✅ Best for POC and straightforward demos
+- Sequential processing
+
+**Multi-Agent (`ccg-demo-multi-agent/`):**
+- ✅ Specialized agents for different domains
+- ✅ Can execute agents in parallel for better performance
+- ✅ Easier to maintain and extend individual capabilities
+- ✅ Production-ready architecture
+- Better for complex workflows
 
 ## 🛠️ Technology Stack
 

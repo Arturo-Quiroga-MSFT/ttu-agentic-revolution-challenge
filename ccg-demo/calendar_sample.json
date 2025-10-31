@@ -1,52 +1,52 @@
 [
   {
     "id": "cal-001",
-    "title": "Flight to Contoso Client Site",
+    "title": "Flight to Vancouver Client Site",
     "start": "2025-11-13T07:00:00-05:00",
-    "end": "2025-11-13T09:00:00-05:00",
-    "location": "JFK -> Client Site",
-    "attendees": ["alice@ccg.com"],
-    "description": "Travel to client onsite",
+    "end": "2025-11-13T09:00:00-08:00",
+    "location": "TOR -> Vancouver",
+    "attendees": ["arturoqu@microsoft.com"],
+    "description": "Travel to Vancouver for client onsite",
     "categories": ["Travel", "Billable"]
   },
   {
     "id": "cal-002",
-    "title": "Client Onsite Workshop - Contoso Corp",
-    "start": "2025-11-13T09:30:00-05:00",
-    "end": "2025-11-13T12:30:00-05:00",
-    "location": "Contoso HQ, Conference Room A",
-    "attendees": ["alice@ccg.com", "bob@contoso.com"],
-    "description": "Workshop on Azure migration strategy",
+    "title": "Client Onsite Workshop - VanTech",
+    "start": "2025-11-13T09:30:00-08:00",
+    "end": "2025-11-13T12:30:00-08:00",
+    "location": "VanTech HQ, Vancouver",
+    "attendees": ["arturoqu@microsoft.com", "bob@vantech.com"],
+    "description": "Workshop on cloud migration strategy",
     "categories": ["Client Meeting", "Billable"]
   },
   {
     "id": "cal-002b",
-    "title": "Lunch with Client Team",
-    "start": "2025-11-13T12:30:00-05:00",
-    "end": "2025-11-13T13:30:00-05:00",
-    "location": "Contoso Cafeteria",
-    "attendees": ["alice@ccg.com", "bob@contoso.com", "carol@contoso.com"],
+    "title": "Lunch with Vancouver Client Team",
+    "start": "2025-11-13T12:30:00-08:00",
+    "end": "2025-11-13T13:30:00-08:00",
+    "location": "VanTech Cafeteria",
+    "attendees": ["arturoqu@microsoft.com", "bob@vantech.com", "carol@vantech.com"],
     "description": "Working lunch discussing migration risks",
     "categories": ["Client Meeting", "Billable"]
   },
   {
     "id": "cal-002c",
     "title": "Client Q&A Session",
-    "start": "2025-11-13T14:00:00-05:00",
-    "end": "2025-11-13T16:00:00-05:00",
-    "location": "Contoso HQ, Conference Room B",
-    "attendees": ["alice@ccg.com", "bob@contoso.com", "tech-team@contoso.com"],
+    "start": "2025-11-13T14:00:00-08:00",
+    "end": "2025-11-13T16:00:00-08:00",
+    "location": "VanTech HQ, Vancouver",
+    "attendees": ["arturoqu@microsoft.com", "bob@vantech.com", "tech-team@vantech.com"],
     "description": "Technical Q&A and architecture review",
     "categories": ["Client Meeting", "Billable"]
   },
   {
     "id": "cal-003",
-    "title": "Return Flight",
-    "start": "2025-11-13T17:00:00-05:00",
+    "title": "Return Flight to TOR",
+    "start": "2025-11-13T17:00:00-08:00",
     "end": "2025-11-13T19:00:00-05:00",
-    "location": "Client Site -> JFK",
-    "attendees": ["alice@ccg.com"],
-    "description": "Return travel",
+    "location": "Vancouver -> TOR",
+    "attendees": ["arturoqu@microsoft.com"],
+    "description": "Return travel to Toronto",
     "categories": ["Travel", "Billable"]
   },
   {
@@ -55,18 +55,180 @@
     "start": "2025-11-14T10:00:00-05:00",
     "end": "2025-11-14T10:30:00-05:00",
     "location": "Teams meeting",
-    "attendees": ["alice@ccg.com", "team@ccg.com"],
+    "attendees": ["arturoqu@microsoft.com", "team@ccg.com"],
     "description": "Weekly team sync",
     "categories": ["Internal"]
   },
   {
     "id": "cal-005",
-    "title": "Prep for Next Week's Workshop",
+    "title": "Prep for Montreal Workshop",
     "start": "2025-11-14T11:00:00-05:00",
     "end": "2025-11-14T12:00:00-05:00",
-    "location": "Focus time",
-    "attendees": ["alice@ccg.com"],
-    "description": "Prepare materials for Fabrikam workshop",
+    "location": "Focus time, TOR",
+    "attendees": ["arturoqu@microsoft.com"],
+    "description": "Prepare materials for Montreal client workshop",
     "categories": ["Billable", "Preparation"]
+  },
+  {
+    "id": "cal-006",
+    "title": "Flight to Montreal",
+    "start": "2025-11-15T07:00:00-05:00",
+    "end": "2025-11-15T09:00:00-05:00",
+    "location": "TOR -> Montreal",
+    "attendees": ["arturoqu@microsoft.com"],
+    "description": "Travel to Montreal for client engagement",
+    "categories": ["Travel", "Billable"]
+  },
+  {
+    "id": "cal-007",
+    "title": "Client Dinner - Montreal",
+    "start": "2025-11-15T19:00:00-05:00",
+    "end": "2025-11-15T21:00:00-05:00",
+    "location": "Montreal Downtown",
+    "attendees": ["arturoqu@microsoft.com", "eve@montrealco.com"],
+    "description": "Dinner with Montreal client team",
+    "categories": ["Client Meeting", "Billable"]
+  }
+  ,
+  {
+    "id": "cal-008",
+    "title": "Remote Workshop - Vancouver",
+    "start": "2025-11-16T09:00:00-08:00",
+    "end": "2025-11-16T11:00:00-08:00",
+    "location": "Virtual (Teams)",
+    "attendees": ["arturoqu@microsoft.com", "vancouver-team@vantech.com"],
+    "description": "Remote workshop for Vancouver client on Azure security",
+    "categories": ["Client Meeting", "Remote", "Billable"]
+  },
+  {
+    "id": "cal-009",
+    "title": "Coffee Chat with Montreal Partner",
+    "start": "2025-11-16T14:00:00-05:00",
+    "end": "2025-11-16T14:45:00-05:00",
+    "location": "Montreal Cafe",
+    "attendees": ["arturoqu@microsoft.com", "partner@montrealco.com"],
+    "description": "Networking and partnership discussion",
+    "categories": ["Networking", "Non-Billable"]
+  },
+  {
+    "id": "cal-010",
+    "title": "Client Debrief - Toronto",
+    "start": "2025-11-17T09:00:00-05:00",
+    "end": "2025-11-17T10:00:00-05:00",
+    "location": "TOR Office, Boardroom",
+    "attendees": ["arturoqu@microsoft.com", "ccg-client@contoso.com"],
+    "description": "Debrief with client after Montreal engagement",
+    "categories": ["Client Meeting", "Billable"]
+  },
+  {
+    "id": "cal-011",
+    "title": "Lunch & Learn - Toronto",
+    "start": "2025-11-17T12:00:00-05:00",
+    "end": "2025-11-17T13:00:00-05:00",
+    "location": "TOR Office, Cafeteria",
+    "attendees": ["arturoqu@microsoft.com", "team@ccg.com"],
+    "description": "Internal Lunch & Learn on AI best practices",
+    "categories": ["Internal", "Non-Billable"]
+  },
+  {
+    "id": "cal-012",
+    "title": "Client Follow-up Call - Vancouver",
+    "start": "2025-11-17T15:00:00-08:00",
+    "end": "2025-11-17T15:30:00-08:00",
+    "location": "Virtual (Teams)",
+    "attendees": ["arturoqu@microsoft.com", "bob@vantech.com"],
+    "description": "Follow-up call to review action items from workshop",
+    "categories": ["Client Meeting", "Remote", "Billable"]
+  }
+  ,
+  {
+    "id": "cal-013",
+    "title": "Client Strategy Session - Montreal",
+    "start": "2025-11-18T09:00:00-05:00",
+    "end": "2025-11-18T11:00:00-05:00",
+    "location": "Montreal HQ, Boardroom",
+    "attendees": ["arturoqu@microsoft.com", "eve@montrealco.com"],
+    "description": "Strategy session for upcoming cloud migration phase",
+    "categories": ["Client Meeting", "Billable"]
+  },
+  {
+    "id": "cal-014",
+    "title": "Flight to Vancouver",
+    "start": "2025-11-19T07:00:00-05:00",
+    "end": "2025-11-19T09:00:00-08:00",
+    "location": "TOR -> Vancouver",
+    "attendees": ["arturoqu@microsoft.com"],
+    "description": "Travel to Vancouver for client workshop",
+    "categories": ["Travel", "Billable"]
+  },
+  {
+    "id": "cal-015",
+    "title": "Client Workshop - Vancouver",
+    "start": "2025-11-19T10:00:00-08:00",
+    "end": "2025-11-19T13:00:00-08:00",
+    "location": "VanTech HQ, Vancouver",
+    "attendees": ["arturoqu@microsoft.com", "bob@vantech.com", "carol@vantech.com"],
+    "description": "Workshop on advanced analytics",
+    "categories": ["Client Meeting", "Billable"]
+  },
+  {
+    "id": "cal-016",
+    "title": "Vancouver Client Dinner",
+    "start": "2025-11-19T19:00:00-08:00",
+    "end": "2025-11-19T21:00:00-08:00",
+    "location": "Vancouver Downtown",
+    "attendees": ["arturoqu@microsoft.com", "bob@vantech.com"],
+    "description": "Dinner with Vancouver client team",
+    "categories": ["Client Meeting", "Billable"]
+  },
+  {
+    "id": "cal-017",
+    "title": "Return Flight to TOR",
+    "start": "2025-11-20T08:00:00-08:00",
+    "end": "2025-11-20T10:00:00-05:00",
+    "location": "Vancouver -> TOR",
+    "attendees": ["arturoqu@microsoft.com"],
+    "description": "Return travel to Toronto",
+    "categories": ["Travel", "Billable"]
+  },
+  {
+    "id": "cal-018",
+    "title": "Internal Project Review",
+    "start": "2025-11-21T09:00:00-05:00",
+    "end": "2025-11-21T10:30:00-05:00",
+    "location": "TOR Office, Project Room",
+    "attendees": ["arturoqu@microsoft.com", "team@ccg.com"],
+    "description": "Review of internal AI project milestones",
+    "categories": ["Internal", "Non-Billable"]
+  },
+  {
+    "id": "cal-019",
+    "title": "Client Status Call - Montreal",
+    "start": "2025-11-21T14:00:00-05:00",
+    "end": "2025-11-21T14:30:00-05:00",
+    "location": "Virtual (Teams)",
+    "attendees": ["arturoqu@microsoft.com", "eve@montrealco.com"],
+    "description": "Status update call for Montreal engagement",
+    "categories": ["Client Meeting", "Remote", "Billable"]
+  },
+  {
+    "id": "cal-020",
+    "title": "TOR Office Social",
+    "start": "2025-11-22T17:00:00-05:00",
+    "end": "2025-11-22T19:00:00-05:00",
+    "location": "TOR Office, Lounge",
+    "attendees": ["arturoqu@microsoft.com", "team@ccg.com"],
+    "description": "Office social event",
+    "categories": ["Internal", "Non-Billable"]
+  },
+  {
+    "id": "cal-021",
+    "title": "Client Planning Meeting - Toronto",
+    "start": "2025-11-23T09:00:00-05:00",
+    "end": "2025-11-23T10:30:00-05:00",
+    "location": "TOR Office, Boardroom",
+    "attendees": ["arturoqu@microsoft.com", "ccg-client@contoso.com"],
+    "description": "Planning meeting for next quarter's engagement",
+    "categories": ["Client Meeting", "Billable"]
   }
 ]

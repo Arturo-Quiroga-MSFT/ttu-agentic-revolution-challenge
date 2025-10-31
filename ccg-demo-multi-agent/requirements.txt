@@ -1,0 +1,5 @@
+# Same dependencies as single-agent demo
+agent-framework>=0.1.0
+python-dotenv
+azure-identity
+streamlit>=1.28.0

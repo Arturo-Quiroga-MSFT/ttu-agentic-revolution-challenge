@@ -1,5 +1,5 @@
 {
-  "user": "alice@ccg.com",
+  "user": "arturoqu@microsoft.com",
   "entries": [
     {
       "id": "ts-001",
@@ -7,8 +7,8 @@
       "start": "09:30:00",
       "end": "12:30:00",
       "duration_hours": 3.0,
-      "task": "Client Work - Contoso Corp Workshop",
-      "project": "Contoso Azure Migration",
+      "task": "Client Work - VanTech Workshop",
+      "project": "VanTech Cloud Migration",
       "billable": true
     },
     {
@@ -20,6 +20,26 @@
       "task": "Internal - Team Sync",
       "project": "CCG Internal",
       "billable": false
+    },
+    {
+      "id": "ts-003",
+      "date": "2025-11-15",
+      "start": "19:00:00",
+      "end": "21:00:00",
+      "duration_hours": 2.0,
+      "task": "Client Dinner - Montreal",
+      "project": "Montreal Engagement",
+      "billable": true
+    },
+    {
+      "id": "ts-004",
+      "date": "2025-11-15",
+      "start": "11:00:00",
+      "end": "12:00:00",
+      "duration_hours": 1.0,
+      "task": "Prep for Montreal Workshop",
+      "project": "Montreal Engagement",
+      "billable": true
     }
   ]
 }
