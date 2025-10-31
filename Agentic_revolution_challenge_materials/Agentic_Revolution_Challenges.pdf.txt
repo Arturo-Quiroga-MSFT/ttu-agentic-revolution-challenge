@@ -1,0 +1,451 @@
+Session Format (3 hours)
+Agenda              Time
+
+Kickoff             9:00 PT
+
+Scenario overview   9:10 PT
+                                      Breakouts end at
+Team breakouts      9:20 – 11:20 PT   11:20 PT
+                                      Set a timer in
+                                      Teams!
+Team readouts       11:20 PT
+
+Wrap                11:50 PT
+Reminders
+ Decide as a team what you can accomplish with the allotted time
+
+
+ Do not feel obligated to solve ALL the problems or use cases – it
+ might make sense to pick one to solve or combine
+
+ Be creative – if there is a critical element of the scenario that is
+ missing – please add it so all can be included
+Agentic method [template]
+                                       Agentic Toolkit      Notes
+Approach:
+Lorem ipsum dolore whatever… We
+started by ideating with agentic
+help, then put agents in your agents
+so you could agent while you agent.
+
+
+Insights:
+• Lorem ipsum
+• Dolor latin stuff
+• Learning is fun
+
+
+
+
+                                       Team members: member1, member2, member3
+Scenario: Agentic
+migration and
+modernization for
+manufacturing customer
+Challenge Basics
+
+
+        Goal: Accelerate migrate and modernize with a customer using agentic tools and
+        processes.
+
+
+
+        Scenario: Partner has a large manufacturing customer who has just signed a large
+        MACC, and now seeks assistance from Microsoft to support the migration and
+        modernization of the customer’s application portfolio.
+
+
+        Focus Areas: Migrate and modernize critical business applications, comprehensive
+        cloud solution architecture, migrate vs modernize rationale, security, future
+        roadmap
+Scenario
+       ORGANIZATION                     INFRASTRUCTURE                              APPLICATIONS                           OPERATIONS
+Industry: Manufacturing           Data Centers:                            Core Business:
+                                                                                                                    Observability:
+                                  •   Two physical data centers running    •  ERP system running on Windows
+                                                                                                                    •  Core infrastructure
+                                      aging hardware (average age: 7          Server 2012
+                                                                                                                       monitoring limited to native
+Size: ~5,000 employees across         years).                              •  CRM built on .NET Framework 4.5,         tools with no automation
+multiple regions                  •   Limited redundancy and disaster         tightly coupled to SQL Server.
+                                      recovery capabilities.               •  Company line-of-business and
+                                                                              operations apps use Java Spring
+Core Business Systems: Legacy     Compute & Storage:                          and PostgreSQL                        Identity:
+ERP, custom-built CRM, and on-    •  Virtualized workloads on VMware       Integration                              • On-prem Active Directory
+premises data warehouse for          clusters.
+operations, custom application                                             •   Point-to-point integrations; no         domain
+                                  •  Storage arrays nearing capacity;          centralized API strategy             • Entra ID tenant (existing M365
+portfolio for manufacturing and
+                                     scaling requires significant CapEx.                                               customer)
+production systems                                                         •   Java apps use RabbitMQ
+                                                                           •   Some legacy SSIS processes for       • Apps use a mix of legacy
+IT Landscape: Primarily on-
+                                  Networking:                                  data warehouse                          user/password and Windows
+premises, fragmented cloud                                                                                             auth (via domain users)
+adoption                          •  MPLS-based WAN with high
+                                                                           Data:
+                                     latency for remote offices.                                                    Management:
+                                     No SD-WAN or modern network           •   Large amount of mixed file storage
+                                  •                                                                                 • Legacy custom ticketing
+                                                                               on aging NAS infrastructure
+                                     optimization.                                                                    system for incident
+                                                                           •   SQL Server supports CRM and ERP        management
+                                                                           •   PostgreSQL and MariaDB
+                                                                    Voice of the customer
+                CEO                                      CFO                                       CTO                                     CIO                                    CSO
+
+
+
+
+•   Adopt AI across every aspect of          •   Wants to avoid project sprawl,      •   Fully sold on cloud and Azure       •   Manages portfolio of Java apps     •   A critical vulnerability in one of
+    business                                     and ensure existing spend is            platform, but fighting company          with some legacy apps no one           our apps exposed sensitive
+•   Need to present to the board the AI          controlled                              inertia and legacy complexity           remembers how to work on.              customer data and impacted
+    strategy, as they are concerned about    •   Optimize spend through cloud        •   Last CTO was fired because of       •   Supports increasing number of          the company’s reputation.
+    competition pulling ahead                    cost controls and stay on               disruption in production during         apps and databases with the        •   Concern about AI misuse and
+•   Worried about IT staff skills and need       budget                                  new system rollout                      same number of staff                   abuse
+    assurance that they can continue         •   Stay compliant with corporate       •   Wants to use AI to optimize         •   Relies on aging in-house           •   Knows we have software in prod
+    provide value to the organization            policy for financial systems data       factory processes and safety            ticketing system for operations        with unpatched CVEs
+                                                 and access                          •   Feels the wealth of sensor and          management
+                                             •   Has been using AI tools for             IoT data they already have is not   •   1 year deadline to retire legacy
+                                                 years and has personal ChatGPT          put to good use                         datacenters
+                                                 subscription; doesn’t want AI at                                            •   One system has a technical
+                                                 work to become “just another                                                    requirement to stay on-prem
+                                                 chatbot”                                                                        and cannot migrate to cloud
+                                                                                                                                 infra
+               Technical presentation
+
+               • PowerPoint or other visual presentation style
+               • How would you present this to the C Suite?
+
+               Architecture Diagram
+
+               • Technical design illustrating how their systems work on Azure
+
+
+Suggested      Migration Plan
+
+
+Deliverables   • Process approach and tools used to move customer workloads to
+                 Azure
+               • Estimated timeline and deliverables
+
+               Code repo
+
+               • Example infrastructure-as-code for cloud-based deployment of
+                 migrated app
+               • Sample code orSpring
+                                 other        technical artifacts supporting migration and
+                                      Petclinic community
+
+
+                 modernization effort (Spring Petclinic community can be used as a
+                 sample repo if desired)
+Contoso Consulting
+Group (CCG) AI
+Innovation
+Challenge
+
+Make time reporting effortless,
+accurate, and intelligent
+Contoso Consulting
+Group’s Pain Points
+
+ Consultants dislike manual time entry
+  — often delayed or incomplete
+ Missing travel time and misclassified
+  expenses reduce billable accuracy
+ Managers spend hours reconciling
+  inconsistent reports
+ Leadership lacks real-time visibility into
+  project utilization
+ Compliance issues with client contracts
+  due to data errors
+Challenge Overview
+
+             Help CCG reimagine the experience of time and expense reporting using Agentic AI principles. Show how AI
+             could proactively assist consultants, even if it is only a conceptual or partial prototype
+
+
+
+
+             Remember: Your solution should demonstrate Agentic AI behaviors – reasoning, tool use, and proactive
+             assistance
+
+
+
+
+             Choose one focus area (not all):
+             1. Context Awareness: Detect missing travel or time entries
+             2. Proactive Suggestions: Recommend updates based on schedule or behavior
+             3. Conversational Interface: Let consultants log or confirm entries natrually
+
+
+
+   You only need to build or mock one of these features
+Requirements
+
+Build an Agentic AI Concept Prototype
+ Design: Sketch an architecture or flow
+  diagram (PowerPoint, whiteboard, or
+  draw.io)
+ Demonstrate:
+   A short script, mock interaction, or working demo
+    that shows your AI flow
+   You can use a local script, Semantic Kernel/Agent
+    Framework sample, or Copilot Studio
+ Use Microsoft AI Tools: Include at
+  least one (e.g. Azure Open AI, Semantic
+  Kernel, Azure Cognitive Services,
+  Copilot Studio, etc)
+ Present: 3-5 minute walkthrough of
+  your concept
+Deliverables
+
+    Concept Diagram
+
+    • Simple visual showing how your agent or flow would work
+    • Example: SK + Azure Functions + OpenAI
+
+    Demo or Script
+
+    • Show a sample conversation or flow (mock or working)
+    • Example: Console app, Postman, or slide-based simulation
+
+    README / Summary Slide
+
+    • Which AI tools did you use, and why
+    • Example: "We used Azure OpenAI for reasoning; Graph for calendar context"
+ Contoso Coffee & Tea AI Innovation
+ Challenge
+
+
+
+
+Reinventing the Café Experience through AI
+Contoso Coffee & Tea
+Current Concerns
+
+• Sales have stagnated despite a strong
+  brand presence.
+• Customer engagement and loyalty app
+  usage are declining.
+• The mobile experience feels generic and
+  lacks personalization.
+• Younger customers expect smarter,
+  more tailored digital interactions.
+• Feedback and data are underused,
+  offering little insight into customer
+  behavior.
+Challenge Overview
+
+     Goal: Help Contoso Coffee & Tea transform its café experience using AI-
+     driven innovation.
+
+
+     Scenario: Design a new digital feature for the mobile/web app to boost
+     customer engagement, personalization, and convenience, both in-store and
+     online.
+
+
+
+     Focus Areas: Creativity, Technical Implementation, Real-world Applicability
+Requirements
+
+• Prototype: Create a new app or
+  feature concept that reimagines how
+  customers interact with a coffee or tea
+  shop, from ordering to
+  personalization.
+• AI Integration: Use AI in any creative
+  way (i.e. not a chat bot) that
+  enhances the customer experience.
+• Tech Stack: Completely open
+               Feature Description
+
+               • What problem or opportunity does it address?
+               • Why is it valuable for customers and the business?
+
+               Technical Implementation
+
+               • Include an architecture diagram and overview of how AI fits
+                 into your design.
+
+               Demo
+Deliverables   • Create a working prototype or short walkthrough that
+                 demonstrates your feature in action.
+
+               Documentation
+
+               • Explain how the AI component works (data used, limitations,
+                 and ethics).
+               • Describe which agentic tools you used to support your
+                 ideation or development process.
+Example
+Deliverables
+Strategy document or presentation
+Wireframes
+Proposed design
+Solution mapping
+Project plan
+Architecture
+Prototype: UX or app
+Demo
+                     Unlocking transformation by function
+
+
+Customer Service             Sales                 Finance              Marketing                 HR                   Legal                      IT
+
+                                                                                                                   Regulatory &
+                                                                     Customer insights         Employee
+     Self-help        Customer self-service     Quote to cash                                                       compliance          Software development
+                                                                        & strategy            engagement
+                                                                                                                   management
+
+Support assignment      Lead generation        Record to report     Demand generation          Recruiting           Contracting          Data management
+
+
+  Issue diagnosis     Customer engagement       Tax & treasury       Content creation      HR admin & payroll    Risk management        Device management
+
+
+                          Negotiations                                                       Compensation
+Problem resolution                            Planning & analysis   Campaign execution                               Litigation             IT operations
+                           & closing                                                           & benefits
+
+   Continuous          Post-sale follow-up    Risk management                                  Learning
+                                                                     Predictive analysis                           Consultation          Network operations
+  improvement               & upsell           and compliance                               & development
+
+                         Sales analysis
+                                                Procure-to-pay        Personalization      Talent management    Intellectual property    Information security
+                         & forecasting
+
+                                                                     Sales enablement         HR strategy                               Change management
+                                                                                                                 Advisory services
+                                                                    & recommendation          & planning                                  & user adoption
+Breakouts – Suggested Milestones
+ Milestone                      Notes                                                      Time
+
+ Introductions                  Name, expertise and superpowers                            5 min
+
+ Scenario review and            Review the scenario and ideate on what deliverables you    30 min
+                                can produce given the time and skillsets on your team.
+ ideation                       Review as a group or separately then share ideas.
+
+ Planning                       Create a plan of attack, deliverables and owners.          10 min
+                                Remember to use AI / agents for solution development
+                                AND incorporate AI and agentic innovations into those
+                                solutions!
+
+ Build!                         Start building with AI and agents. Make sure you are       60 min
+                                checking in frequently as a team.
+
+ Prep for readouts              Bring the team’s contributions/deliverables together and   15 min
+                                ensure you are aligned with the vision you outlined.
+
+                                Articulate the solution, AI/agents used and learnings to
+                                share in the readout.
+
+
+ProTip: Use Copilot to record the session!                                                 Total: 2 hours
+Microsoft Copilots
+
+
+
+
+                 Source: https://arashaghajani.com/blog/what-are-microsofts-different-copilots/
+GitHub Copilot's Benefits Extend Beyond Developers…
+
+
+                                  Development
+
+
+                                      GitHub
+                                      Copilot
+
+
+                                       Agent
+                                       mode
+
+
+                                      Coding
+                                      agent
+
+
+                                      GitHub
+                                    Copilot Chat
+
+
+                                      Copilot
+                                     in the CLI
+Copilots & Agents Across the SDLC…
+
+  Planning &
+                  Design        Development      Testing       Deployment      Maintenance
+   Analysis
+
+
+     Microsoft     Microsoft       Microsoft      Microsoft       Microsoft       Microsoft
+    365 Copilot   365 Copilot     365 Copilot    365 Copilot     365 Copilot     365 Copilot
+
+
+                    GitHub          GitHub         GitHub          GitHub          GitHub
+    Researcher
+                   Copilot &       Copilot &      Copilot &       Copilot &       Copilot &
+      agent
+                    agents          agents         agents          agents          agents
+
+                                                 Copilot in       GitHub
+     Analyst        GitHub         Copilot for                                    Security
+                                                   Azure         Copilot for
+      agent         Spark            Azure                                        Copilot
+                                                  DevOps           Azure
+
+     Project                                      GitHub
+                                    Copilot                                       Azure SRE
+     Manager                                     Copilot for
+                                    Spaces                                          Agent
+      agent                                        Azure
+
+      GitHub
+                                   Copilot in
+     Copilot &
+                                    Fabric
+      agents
+Copilots & Agents Across Roles
+
+     Project           Architects &                           QA Engineers &                          Platform &
+                                           Developers &                              DevOps
+   Managers &            Product                                Technical                              Security
+                                          Data Engineers                            Engineers
+    Analysts            Managers                                 Writers                              Engineers
+
+      Track project      Define product          Write             Create test         Manage          Review security
+     timelines and       roadmap and         documentation          plans and        deployment         policies and
+       milestones           strategy          and reports          procedures         schedules         compliance
+
+
+    Conduct market       Design system                                Write                             Implement
+                                             Code features                             Configure
+    and competitive       architecture                           automated test                          security
+                                              and fix bugs                          CI/CD pipelines
+       research             patterns                                 scripts                          controls in code
+
+
+     Analyze data         Create rapid                                Execute        Provision and      Investigate
+                                             Deploy cloud
+      trends and         prototypes and                           integration and    monitor cloud      threats and
+                                             infrastructure
+        metrics               MVPs                               regression tests      resources       vulnerabilities
+
+
+      Coordinate                             Collaborate on                                             Respond to
+                                                                 Document APIs
+    team resources                               shared                                                incidents and
+                                                                 and user guides
+     and schedules                            codebases                                                   outages
+
+
+       Document                                Build ETL
+     requirements                            pipelines and
+    and user stories                           analytics
+

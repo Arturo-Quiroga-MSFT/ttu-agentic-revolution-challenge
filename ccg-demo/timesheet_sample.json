@@ -1,0 +1,25 @@
+{
+  "user": "alice@ccg.com",
+  "entries": [
+    {
+      "id": "ts-001",
+      "date": "2025-11-13",
+      "start": "09:30:00",
+      "end": "12:30:00",
+      "duration_hours": 3.0,
+      "task": "Client Work - Contoso Corp Workshop",
+      "project": "Contoso Azure Migration",
+      "billable": true
+    },
+    {
+      "id": "ts-002",
+      "date": "2025-11-14",
+      "start": "10:00:00",
+      "end": "10:30:00",
+      "duration_hours": 0.5,
+      "task": "Internal - Team Sync",
+      "project": "CCG Internal",
+      "billable": false
+    }
+  ]
+}
