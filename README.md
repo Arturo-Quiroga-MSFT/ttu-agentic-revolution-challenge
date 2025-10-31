@@ -125,22 +125,118 @@ python ccg-demo/agent_demo.py
 
 ## 🏗️ Architecture
 
-### Agent Design
+### Simplified Architecture
 
+```mermaid
+graph LR
+    User[👤 User] -->|Query| Agent[🤖 ChatAgent<br/>Microsoft Agent Framework]
+    Agent -->|Reasoning| GPT[💭 gpt-4.1/gpt-5-mini<br/>Azure OpenAI]
+    Agent -->|Calls| Tools[🔧 Function Tools]
+    
+    subgraph Tools
+        T1[📅 Calendar]
+        T2[⏱️ Timesheet]
+        T3[💡 Suggestions]
+        T4[💰 Revenue]
+    end
+    
+    Tools -->|Data| Data[(📊 Sample Data)]
+    Agent -->|Response| User
+
+    style Agent fill:#0078d4,color:#fff
+    style GPT fill:#50e6ff,color:#000
+    style Tools fill:#68217a,color:#fff
 ```
-User Query
-    ↓
-ChatAgent (Microsoft Agent Framework)
-    ↓
-GPT-4 Reasoning
-    ↓
-Function Tool Selection
-    ├── get_calendar_events()
-    ├── get_timesheet_entries()
-    ├── suggest_timesheet_entry()
-    └── calculate_revenue_impact()
-    ↓
-Structured Response + Rationale
+
+### Detailed Solution Architecture
+
+```mermaid
+graph TB
+    subgraph "User Interface Layer"
+        UI1[Streamlit Web UI<br/>streamlit_app.py]
+        UI2[Console Demo<br/>agent_demo.py]
+    end
+
+    subgraph "Microsoft Agent Framework"
+        Agent[ChatAgent<br/>gpt-4.1/gpt-5-mini Reasoning]
+        Thread[AgentThread<br/>Conversation Memory]
+        Tools[Function Tools Registry]
+    end
+
+    subgraph "Function Tools"
+        T1[get_calendar_events<br/>Retrieves calendar data]
+        T2[get_timesheet_entries<br/>Retrieves timesheet data]
+        T3[suggest_timesheet_entry<br/>Proposes missing entries]
+        T4[calculate_revenue_impact<br/>Computes business value]
+    end
+
+    subgraph "Data Layer"
+        D1[(Calendar Data<br/>calendar_sample.json)]
+        D2[(Timesheet Data<br/>timesheet_sample.json)]
+    end
+
+    subgraph "AI Model"
+        Azure[Azure OpenAI<br/>gpt-4.1/gpt-5-mini]
+    end
+
+    UI1 -->|User Query| Agent
+    UI2 -->|User Query| Agent
+    Agent -->|Maintains Context| Thread
+    Agent -->|Selects & Calls| Tools
+    Tools -->|Register| T1
+    Tools -->|Register| T2
+    Tools -->|Register| T3
+    Tools -->|Register| T4
+    T1 -->|Read| D1
+    T2 -->|Read| D2
+    T3 -->|Read| D1
+    T3 -->|Read| D2
+    T4 -->|Calculate| T2
+    Agent <-->|API Calls| Azure
+    Thread -->|Context| Agent
+    Tools -->|Results| Agent
+    Agent -->|Structured Response| UI1
+    Agent -->|Structured Response| UI2
+
+    style Agent fill:#0078d4,color:#fff
+    style Azure fill:#50e6ff,color:#000
+    style Thread fill:#00bcf2,color:#fff
+    style Tools fill:#68217a,color:#fff
+    style UI1 fill:#107c10,color:#fff
+    style UI2 fill:#107c10,color:#fff
+```
+
+### Data Flow Sequence
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant ChatAgent
+    participant GPT4.1/5-mini
+    participant CalendarTool
+    participant TimesheetTool
+    participant SuggestionTool
+
+    User->>ChatAgent: "Review my calendar and timesheet"
+    ChatAgent->>GPT4.1/5-mini: Process query with instructions
+    GPT4.1/5-mini->>ChatAgent: Decision: Call calendar function
+    ChatAgent->>CalendarTool: get_calendar_events("arturo@ccg.com")
+    CalendarTool-->>ChatAgent: 7 events (14 hours total)
+    ChatAgent->>GPT4.1/5-mini: Here's calendar data
+    GPT4.1/5-mini->>ChatAgent: Decision: Call timesheet function
+    ChatAgent->>TimesheetTool: get_timesheet_entries("arturo@ccg.com")
+    TimesheetTool-->>ChatAgent: 2 entries (3.5 hours logged)
+    ChatAgent->>GPT4.1/5-mini: Compare data
+    GPT4.1/5-mini->>ChatAgent: Decision: Call suggestion function
+    ChatAgent->>SuggestionTool: suggest_timesheet_entry(...)
+    SuggestionTool-->>ChatAgent: 5 missing entries (8 hours)
+    ChatAgent->>GPT4.1/5-mini: Format response
+    GPT4.1/5-mini->>ChatAgent: Structured analysis with rationale
+    ChatAgent->>User: "Found 8 missing hours worth $2,000..."
+    User->>ChatAgent: "Yes, submit those entries"
+    ChatAgent->>GPT4.1/5-mini: Process confirmation
+    GPT4.1/5-mini->>ChatAgent: Confirm action
+    ChatAgent->>User: "✅ All 5 entries confirmed"
 ```
 
 ### Multi-turn Conversation
