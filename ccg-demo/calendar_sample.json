@@ -231,4 +231,176 @@
     "description": "Planning meeting for next quarter's engagement",
     "categories": ["Client Meeting", "Billable"]
   }
+    ,
+    {
+      "id": "cal-022",
+      "title": "Morning Run - Boston",
+      "start": "2025-11-02T07:00:00-05:00",
+      "end": "2025-11-02T07:45:00-05:00",
+      "location": "Charles River Esplanade, Boston",
+      "attendees": ["arturoqu@microsoft.com"],
+      "description": "Personal fitness routine",
+      "categories": ["Personal", "Health"]
+    },
+    {
+      "id": "cal-023",
+      "title": "Dinner with Friends - New York",
+      "start": "2025-11-05T19:00:00-05:00",
+      "end": "2025-11-05T21:00:00-05:00",
+      "location": "Little Italy, NYC",
+      "attendees": ["arturoqu@microsoft.com", "friend1@nyc.com", "friend2@nyc.com"],
+      "description": "Catch up dinner with friends in NYC",
+      "categories": ["Personal", "Social"]
+    },
+    {
+      "id": "cal-024",
+      "title": "Client Meeting - Boston",
+      "start": "2025-11-06T10:00:00-05:00",
+      "end": "2025-11-06T11:30:00-05:00",
+      "location": "Boston Financial District",
+      "attendees": ["arturoqu@microsoft.com", "client@bostonco.com"],
+      "description": "Quarterly review with Boston client",
+      "categories": ["Client Meeting", "Billable"]
+    },
+    {
+      "id": "cal-025",
+      "title": "Remote Work - New York",
+      "start": "2025-11-09T09:00:00-05:00",
+      "end": "2025-11-09T17:00:00-05:00",
+      "location": "Home Office, NYC",
+      "attendees": ["arturoqu@microsoft.com"],
+      "description": "Remote work day from NYC apartment",
+      "categories": ["Work", "Remote"]
+    },
+    {
+      "id": "cal-026",
+      "title": "Museum Visit - Boston",
+      "start": "2025-11-10T13:00:00-05:00",
+      "end": "2025-11-10T15:00:00-05:00",
+      "location": "Museum of Fine Arts, Boston",
+      "attendees": ["arturoqu@microsoft.com", "family@quiroga.com"],
+      "description": "Family outing to the museum",
+      "categories": ["Personal", "Family"]
+    },
+    {
+      "id": "cal-027",
+      "title": "Networking Event - New York",
+      "start": "2025-11-12T18:00:00-05:00",
+      "end": "2025-11-12T20:00:00-05:00",
+      "location": "Midtown Manhattan, NYC",
+      "attendees": ["arturoqu@microsoft.com", "network@nytech.com"],
+      "description": "Tech networking mixer",
+      "categories": ["Work", "Networking"]
+    },
+    {
+      "id": "cal-028",
+      "title": "Family Call - Boston",
+      "start": "2025-11-18T20:00:00-05:00",
+      "end": "2025-11-18T20:45:00-05:00",
+      "location": "Virtual (Zoom)",
+      "attendees": ["arturoqu@microsoft.com", "family@quiroga.com"],
+      "description": "Weekly call with family in Boston",
+      "categories": ["Personal", "Family"]
+    },
+    {
+      "id": "cal-029",
+      "title": "Conference - New York",
+      "start": "2025-11-25T09:00:00-05:00",
+      "end": "2025-11-25T17:00:00-05:00",
+      "location": "Javits Center, NYC",
+      "attendees": ["arturoqu@microsoft.com", "tech@conference.com"],
+      "description": "Annual AI & Cloud conference",
+      "categories": ["Work", "Conference"]
+    },
+    {
+      "id": "cal-030",
+      "title": "Thanksgiving Dinner - Boston",
+      "start": "2025-11-27T18:00:00-05:00",
+      "end": "2025-11-27T21:00:00-05:00",
+      "location": "Family Home, Boston",
+      "attendees": ["arturoqu@microsoft.com", "family@quiroga.com"],
+      "description": "Thanksgiving celebration with family",
+      "categories": ["Personal", "Family", "Holiday"]
+    },
+    {
+      "id": "cal-031",
+      "title": "Client Debrief - New York",
+      "start": "2025-11-28T10:00:00-05:00",
+      "end": "2025-11-28T11:00:00-05:00",
+      "location": "Client Office, NYC",
+      "attendees": ["arturoqu@microsoft.com", "client@nyc.com"],
+      "description": "Post-conference debrief with NYC client",
+      "categories": ["Client Meeting", "Billable"]
+    },
+    {
+      "id": "cal-032",
+      "title": "Gym Session - Boston",
+      "start": "2025-11-30T08:00:00-05:00",
+      "end": "2025-11-30T09:00:00-05:00",
+      "location": "Boston Sports Club",
+      "attendees": ["arturoqu@microsoft.com"],
+      "description": "End-of-month fitness session",
+      "categories": ["Personal", "Health"]
+    }
+      ,
+      {
+        "id": "cal-033",
+        "title": "Flight: Toronto to Boston",
+        "start": "2025-11-03T06:30:00-05:00",
+        "end": "2025-11-03T08:30:00-05:00",
+        "location": "Toronto Pearson Intl -> Boston Logan Intl",
+        "attendees": ["arturoqu@microsoft.com"],
+        "description": "Morning flight to Boston for client meetings",
+        "categories": ["Travel", "Work"]
+      },
+      {
+        "id": "cal-034",
+        "title": "Flight: Boston to New York",
+        "start": "2025-11-06T18:00:00-05:00",
+        "end": "2025-11-06T19:30:00-05:00",
+        "location": "Boston Logan Intl -> JFK Intl, NYC",
+        "attendees": ["arturoqu@microsoft.com"],
+        "description": "Evening flight to New York for networking event",
+        "categories": ["Travel", "Work"]
+      },
+      {
+        "id": "cal-035",
+        "title": "Flight: New York to Montreal",
+        "start": "2025-11-11T07:00:00-05:00",
+        "end": "2025-11-11T09:00:00-05:00",
+        "location": "JFK Intl, NYC -> Montreal Trudeau Intl",
+        "attendees": ["arturoqu@microsoft.com"],
+        "description": "Early flight to Montreal for client workshop",
+        "categories": ["Travel", "Work"]
+      },
+      {
+        "id": "cal-036",
+        "title": "Flight: Montreal to Vancouver (with layover in Toronto)",
+        "start": "2025-11-13T06:00:00-05:00",
+        "end": "2025-11-13T11:00:00-08:00",
+        "location": "Montreal Trudeau Intl -> Toronto Pearson Intl (layover) -> Vancouver Intl",
+        "attendees": ["arturoqu@microsoft.com"],
+        "description": "Cross-country travel for Vancouver client onsite, layover in Toronto",
+        "categories": ["Travel", "Work"]
+      },
+      {
+        "id": "cal-037",
+        "title": "Flight: Vancouver to New York",
+        "start": "2025-11-20T21:00:00-08:00",
+        "end": "2025-11-21T05:00:00-05:00",
+        "location": "Vancouver Intl -> JFK Intl, NYC (red-eye)",
+        "attendees": ["arturoqu@microsoft.com"],
+        "description": "Overnight flight to New York for conference",
+        "categories": ["Travel", "Work"]
+      },
+      {
+        "id": "cal-038",
+        "title": "Flight: New York to Toronto",
+        "start": "2025-11-29T18:00:00-05:00",
+        "end": "2025-11-29T20:00:00-05:00",
+        "location": "JFK Intl, NYC -> Toronto Pearson Intl",
+        "attendees": ["arturoqu@microsoft.com"],
+        "description": "Return flight to Toronto after busy month of travel",
+        "categories": ["Travel", "Work"]
+      }
 ]
