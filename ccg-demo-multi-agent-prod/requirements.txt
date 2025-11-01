@@ -1,0 +1,4 @@
+microsoft-agent>=1.2.1
+azure-identity>=1.18.0
+python-dotenv>=1.0.0
+streamlit>=1.39.0

@@ -116,31 +116,89 @@ def initialize_orchestrator():
         st.session_state.orchestrator = create_orchestrator(st.session_state.chat_client)
 
 
-async def run_missing_time_analysis(user_email: str, parallel: bool = True):
-    """Run the missing time analysis workflow."""
+async def run_missing_time_analysis(user_email: str, parallel: bool = True, status_container=None):
+    """Run the missing time analysis workflow with real-time progress updates."""
     initialize_orchestrator()
     
-    with st.spinner("🔄 Analyzing calendar and timesheet data..."):
-        results = await st.session_state.orchestrator.analyze_missing_time(
-            user_email=user_email,
-            parallel=parallel
-        )
+    # Create a custom orchestrator wrapper to track progress
+    orchestrator = st.session_state.orchestrator
     
-    return results
+    if status_container:
+        with status_container:
+            status = st.status("🤖 Multi-Agent Analysis in Progress...", expanded=True)
+            
+            with status:
+                if parallel:
+                    st.write("⚡ Starting parallel execution: Calendar + Timesheet agents")
+                else:
+                    st.write("📊 Starting sequential execution")
+                
+                # Start the analysis
+                import asyncio
+                
+                # Run analysis
+                results = await orchestrator.analyze_missing_time(
+                    user_email=user_email,
+                    parallel=parallel
+                )
+                
+                # Show progress updates
+                execution_log = results.get("execution_log", [])
+                for log_entry in execution_log:
+                    if "Calendar" in log_entry or "Timesheet" in log_entry:
+                        st.write(f"📅 {log_entry}")
+                    elif "Suggestion" in log_entry:
+                        st.write(f"💡 {log_entry}")
+                    else:
+                        st.write(f"🔧 {log_entry}")
+                
+                status.update(label="✅ Analysis Complete!", state="complete", expanded=False)
+        
+        return results
+    else:
+        with st.spinner("🔄 Analyzing calendar and timesheet data..."):
+            results = await orchestrator.analyze_missing_time(
+                user_email=user_email,
+                parallel=parallel
+            )
+        
+        return results
 
 
-async def run_revenue_impact_analysis(user_email: str, missing_hours: float, billable_rate: float):
-    """Run the revenue impact calculation."""
+async def run_revenue_impact_analysis(user_email: str, missing_hours: float, billable_rate: float, status_container=None):
+    """Run the revenue impact calculation with real-time progress updates."""
     initialize_orchestrator()
     
-    with st.spinner("💰 Calculating revenue impact..."):
-        results = await st.session_state.orchestrator.calculate_impact(
-            user_email=user_email,
-            missing_hours=missing_hours,
-            billable_rate=billable_rate
-        )
+    orchestrator = st.session_state.orchestrator
     
-    return results
+    if status_container:
+        with status_container:
+            status = st.status("💰 Calculating Revenue Impact...", expanded=True)
+            
+            with status:
+                st.write("🔧 Starting: Revenue agent")
+                
+                results = await orchestrator.calculate_impact(
+                    user_email=user_email,
+                    missing_hours=missing_hours,
+                    billable_rate=billable_rate
+                )
+                
+                st.write("✅ Completed: Revenue agent")
+                st.write(f"💵 Analyzed {missing_hours} hours at ${billable_rate}/hr")
+                
+                status.update(label="✅ Revenue Analysis Complete!", state="complete", expanded=False)
+        
+        return results
+    else:
+        with st.spinner("💰 Calculating revenue impact..."):
+            results = await orchestrator.calculate_impact(
+                user_email=user_email,
+                missing_hours=missing_hours,
+                billable_rate=billable_rate
+            )
+        
+        return results
 
 
 def display_agent_badges(execution_log):
@@ -172,6 +230,13 @@ def main():
     # Header
     st.markdown('<div class="main-header">🤖 CCG Multi-Agent Time & Expense System</div>', unsafe_allow_html=True)
     st.markdown('<div class="sub-header">Intelligent time tracking powered by specialized AI agents</div>', unsafe_allow_html=True)
+    
+    # Architecture diagram
+    try:
+        st.image("/Users/arturoquiroga/TTU-AGENTIC-REVOLUTION-CHALLENGE/ccg-demo-multi-agent/diagrams/flow.png", 
+                 caption="Multi-Agent Architecture")
+    except:
+        pass  # Silently skip if image not found
     
     # Sidebar
     with st.sidebar:
@@ -258,8 +323,11 @@ def main():
                 st.session_state.run_analysis = True
         
         if st.session_state.get('run_analysis', False):
+            # Create a container for real-time status updates
+            status_container = st.container()
+            
             try:
-                results = asyncio.run(run_missing_time_analysis(user_email, enable_parallel))
+                results = asyncio.run(run_missing_time_analysis(user_email, enable_parallel, status_container))
                 
                 # Display results in expandable sections
                 with st.expander("📅 Calendar Analysis", expanded=True):
@@ -314,8 +382,11 @@ def main():
             st.session_state.run_revenue = True
         
         if st.session_state.get('run_revenue', False):
+            # Create a container for real-time status updates
+            status_container = st.container()
+            
             try:
-                results = asyncio.run(run_revenue_impact_analysis(user_email, missing_hours, billable_rate))
+                results = asyncio.run(run_revenue_impact_analysis(user_email, missing_hours, billable_rate, status_container))
                 
                 # Display revenue analysis
                 st.markdown("#### 💰 Revenue Impact Analysis")
