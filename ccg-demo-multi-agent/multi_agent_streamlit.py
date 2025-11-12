@@ -268,22 +268,27 @@ def main():
         
         st.markdown("---")
         st.markdown("### 🎯 Sample Queries")
-        st.markdown("*Click to view example analysis*")
+        st.markdown("*Click to run analysis*")
         
-        if st.button("💬 What meetings do I have on November 15th?", key="sample_1", width="stretch"):
-            st.info("This query would analyze calendar events for November 15th. Use the 'Run Analysis' button above for full analysis.")
+        if st.button("💬 What meetings do I have on November 15th?", key="sample_1", use_container_width=True):
+            st.session_state.run_analysis = True
+            st.session_state.custom_query = "What meetings do I have on November 15th?"
         
-        if st.button("💬 How many hours did I log in November?", key="sample_2", width="stretch"):
-            st.info("This query would summarize timesheet entries. Use the 'Run Analysis' button above for full analysis.")
+        if st.button("💬 How many hours did I log in November?", key="sample_2", use_container_width=True):
+            st.session_state.run_analysis = True
+            st.session_state.custom_query = "How many hours did I log in November?"
         
-        if st.button("💬 Are there any days with meetings but no time entries?", key="sample_3", width="stretch"):
-            st.info("This query finds gaps between calendar and timesheet. Use the 'Run Analysis' button above for full analysis.")
+        if st.button("💬 Are there any days with meetings but no time entries?", key="sample_3", use_container_width=True):
+            st.session_state.run_analysis = True
+            st.session_state.custom_query = "Are there any days with meetings but no time entries?"
         
-        if st.button("💬 What's my total billable revenue for November?", key="sample_4", width="stretch"):
-            st.info("This query calculates revenue. Use the 'Revenue Impact' tab for detailed calculations.")
+        if st.button("💬 What's my total billable revenue for November?", key="sample_4", use_container_width=True):
+            st.session_state.run_revenue = True
+            st.session_state.custom_query = "What's my total billable revenue for November?"
         
-        if st.button("💬 Show me missing travel time entries", key="sample_5", width="stretch"):
-            st.info("This query identifies unbilled travel. Use the 'Run Analysis' button above for full analysis.")
+        if st.button("💬 Show me missing travel time entries", key="sample_5", use_container_width=True):
+            st.session_state.run_analysis = True
+            st.session_state.custom_query = "Show me missing travel time entries"
         
         st.markdown("---")
         if 'ai_service' in st.session_state:
@@ -296,19 +301,34 @@ def main():
         st.markdown("### 🔍 Identify Missing Time Entries")
         st.markdown("Analyze calendar events and timesheet data to find billable hours that haven't been logged.")
         
+        # Custom question input
+        st.markdown("#### 💬 Ask a Question")
+        custom_question = st.text_input(
+            "Enter your question about time and expenses",
+            placeholder="e.g., What meetings do I have on November 15th?",
+            help="Ask any question about your calendar, timesheet, or missing time entries"
+        )
+        
+        if custom_question and st.button("🔍 Analyze Question", key="analyze_custom"):
+            st.session_state.run_analysis = True
+            st.session_state.custom_query = custom_question
+            st.info(f"💡 Analyzing: {custom_question}")
+        
+        st.markdown("---")
+        
         # Quick action buttons for sample scenarios
         st.markdown("#### 🎯 Quick Actions")
         col_q1, col_q2, col_q3 = st.columns(3)
         with col_q1:
-            if st.button("📅 Analyze All November Data", key="quick_november", width="stretch"):
+            if st.button("📅 Analyze All November Data", key="quick_november", use_container_width=True):
                 st.session_state.run_analysis = True
                 st.session_state.quick_action = "november"
         with col_q2:
-            if st.button("✈️ Find Missing Travel Time", key="quick_travel", width="stretch"):
+            if st.button("✈️ Find Missing Travel Time", key="quick_travel", use_container_width=True):
                 st.session_state.run_analysis = True
                 st.session_state.quick_action = "travel"
         with col_q3:
-            if st.button("🔍 Find All Gaps", key="quick_gaps", width="stretch"):
+            if st.button("🔍 Find All Gaps", key="quick_gaps", use_container_width=True):
                 st.session_state.run_analysis = True
                 st.session_state.quick_action = "gaps"
         
@@ -319,10 +339,14 @@ def main():
             st.markdown("**Analysis Scope:**")
             st.info(f"📧 User: **{user_email}**\n\n⚡ Parallel Execution: **{'Enabled' if enable_parallel else 'Disabled'}**")
         with col2:
-            if st.button("🚀 Run Full Analysis", type="primary", width="stretch"):
+            if st.button("🚀 Run Full Analysis", type="primary", use_container_width=True):
                 st.session_state.run_analysis = True
         
         if st.session_state.get('run_analysis', False):
+            # Show custom query if it exists
+            if st.session_state.get('custom_query'):
+                st.info(f"💬 **Question:** {st.session_state.custom_query}")
+            
             # Create a container for real-time status updates
             status_container = st.container()
             

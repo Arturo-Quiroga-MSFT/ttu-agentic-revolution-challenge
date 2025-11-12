@@ -49,7 +49,7 @@ def initialize_orchestrator():
         client = AzureOpenAIChatClient(
             endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
             api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-            model=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME", "gpt-4o"),
+            model=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME", "gpt-4.1-mini"),
             api_version=os.getenv("AZURE_OPENAI_API_VERSION", "2024-10-21")
         )
     else:
@@ -57,7 +57,7 @@ def initialize_orchestrator():
         
         client = OpenAIChatClient(
             api_key=os.getenv("OPENAI_API_KEY"),
-            model=os.getenv("OPENAI_MODEL", "gpt-4o")
+            model=os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
         )
     
     return create_orchestrator(client)

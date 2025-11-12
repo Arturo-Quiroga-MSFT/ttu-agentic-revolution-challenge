@@ -206,13 +206,13 @@ Required configuration in `.env`:
 USE_AZURE_OPENAI=true
 AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
 AZURE_OPENAI_API_KEY=your-api-key
-AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4o
+AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4.1-mini
 AZURE_OPENAI_API_VERSION=2024-10-21
 
 # OR OpenAI
 USE_AZURE_OPENAI=false
 OPENAI_API_KEY=your-openai-key
-OPENAI_MODEL=gpt-4o
+OPENAI_MODEL=gpt-4.1-mini
 ```
 
 ## Performance
