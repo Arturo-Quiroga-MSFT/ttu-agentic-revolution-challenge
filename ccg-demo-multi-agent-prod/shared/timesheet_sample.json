@@ -1,45 +1,137 @@
-{
-  "user": "arturoqu@microsoft.com",
-  "entries": [
-    {
-      "id": "ts-001",
-      "date": "2025-11-13",
-      "start": "09:30:00",
-      "end": "12:30:00",
-      "duration_hours": 3.0,
-      "task": "Client Work - VanTech Workshop",
-      "project": "VanTech Cloud Migration",
-      "billable": true
-    },
-    {
-      "id": "ts-002",
-      "date": "2025-11-14",
-      "start": "10:00:00",
-      "end": "10:30:00",
-      "duration_hours": 0.5,
-      "task": "Internal - Team Sync",
-      "project": "CCG Internal",
-      "billable": false
-    },
-    {
-      "id": "ts-003",
-      "date": "2025-11-15",
-      "start": "19:00:00",
-      "end": "21:00:00",
-      "duration_hours": 2.0,
-      "task": "Client Dinner - Montreal",
-      "project": "Montreal Engagement",
-      "billable": true
-    },
-    {
-      "id": "ts-004",
-      "date": "2025-11-15",
-      "start": "11:00:00",
-      "end": "12:00:00",
-      "duration_hours": 1.0,
-      "task": "Prep for Montreal Workshop",
-      "project": "Montreal Engagement",
-      "billable": true
-    }
-  ]
-}
+[
+  {
+    "user": "arturoqu@microsoft.com",
+    "entries": [
+      {
+        "id": "ts-001",
+        "date": "2025-11-13",
+        "start": "09:30:00",
+        "end": "12:30:00",
+        "duration_hours": 3.0,
+        "task": "Client Work - VanTech Workshop",
+        "project": "VanTech Cloud Migration",
+        "billable": true
+      },
+      {
+        "id": "ts-002",
+        "date": "2025-11-14",
+        "start": "10:00:00",
+        "end": "10:30:00",
+        "duration_hours": 0.5,
+        "task": "Internal - Team Sync",
+        "project": "CCG Internal",
+        "billable": false
+      },
+      {
+        "id": "ts-003",
+        "date": "2025-11-15",
+        "start": "19:00:00",
+        "end": "21:00:00",
+        "duration_hours": 2.0,
+        "task": "Client Dinner - Montreal",
+        "project": "Montreal Engagement",
+        "billable": true
+      },
+      {
+        "id": "ts-004",
+        "date": "2025-11-15",
+        "start": "11:00:00",
+        "end": "12:00:00",
+        "duration_hours": 1.0,
+        "task": "Prep for Montreal Workshop",
+        "project": "Montreal Engagement",
+        "billable": true
+      }
+    ]
+  },
+  {
+    "user": "sarah.chen@contoso.com",
+    "entries": [
+      {
+        "id": "ts-sarah-001",
+        "date": "2025-11-13",
+        "start": "10:00:00",
+        "end": "15:00:00",
+        "duration_hours": 5.0,
+        "task": "Client Workshop - TechCorp",
+        "project": "TechCorp AI Implementation",
+        "billable": true
+      }
+    ]
+  },
+  {
+    "user": "marcus.johnson@contoso.com",
+    "entries": [
+      {
+        "id": "ts-marcus-001",
+        "date": "2025-11-13",
+        "start": "11:00:00",
+        "end": "13:00:00",
+        "duration_hours": 2.0,
+        "task": "Client Strategy Session",
+        "project": "ChiTech Q1 Planning",
+        "billable": true
+      },
+      {
+        "id": "ts-marcus-002",
+        "date": "2025-11-13",
+        "start": "13:00:00",
+        "end": "14:00:00",
+        "duration_hours": 1.0,
+        "task": "Working Lunch",
+        "project": "ChiTech Q1 Planning",
+        "billable": true
+      }
+    ]
+  },
+  {
+    "user": "priya.patel@contoso.com",
+    "entries": [
+      {
+        "id": "ts-priya-001",
+        "date": "2025-11-13",
+        "start": "13:00:00",
+        "end": "17:00:00",
+        "duration_hours": 4.0,
+        "task": "Tech Conference",
+        "project": "Professional Development",
+        "billable": true
+      }
+    ]
+  },
+  {
+    "user": "james.rodriguez@contoso.com",
+    "entries": [
+      {
+        "id": "ts-james-001",
+        "date": "2025-11-13",
+        "start": "09:00:00",
+        "end": "10:00:00",
+        "duration_hours": 1.0,
+        "task": "Client Call - LA Startup",
+        "project": "LA Startup Architecture",
+        "billable": true
+      },
+      {
+        "id": "ts-james-002",
+        "date": "2025-11-14",
+        "start": "07:00:00",
+        "end": "08:30:00",
+        "duration_hours": 1.5,
+        "task": "Flight to Portland",
+        "project": "Portland Tech Workshop",
+        "billable": true
+      },
+      {
+        "id": "ts-james-003",
+        "date": "2025-11-14",
+        "start": "10:00:00",
+        "end": "16:00:00",
+        "duration_hours": 6.0,
+        "task": "Client Workshop - Portland Tech",
+        "project": "Portland Tech Workshop",
+        "billable": true
+      }
+    ]
+  }
+]

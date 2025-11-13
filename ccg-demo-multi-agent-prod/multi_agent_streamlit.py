@@ -65,46 +65,90 @@ def initialize_orchestrator():
 def parse_suggestions(suggestion_text):
     """
     Parse suggestion agent output to extract individual suggestions.
-    This is a simplified parser - in production you'd use structured output.
+    Enhanced parser that handles numbered list format with date/time in first line.
     """
+    import re
     suggestions = []
     
     if not suggestion_text:
         return suggestions
     
-    # Look for common patterns in the suggestion text
-    lines = suggestion_text.split('\n')
+    # Try to parse JSON first (if suggestion agent uses structured output)
+    try:
+        import json
+        # Look for JSON arrays or objects in the text
+        json_match = re.search(r'\[[\s\S]*\]|\{[\s\S]*\}', suggestion_text)
+        if json_match:
+            data = json.loads(json_match.group())
+            if isinstance(data, list):
+                return data
+            elif isinstance(data, dict) and 'suggestions' in data:
+                return data['suggestions']
+    except:
+        pass
     
+    # Fallback to text parsing
+    lines = suggestion_text.split('\n')
     current_suggestion = {}
+    
     for line in lines:
         line = line.strip()
         
-        if not line or ':' not in line:
-            continue
-            
-        parts = line.split(':', 1)
-        if len(parts) < 2:
+        if not line:
             continue
         
-        if 'date' in parts[0].lower():
-            if current_suggestion:
-                suggestions.append(current_suggestion)
-            current_suggestion = {'date': parts[1].strip()}
-        elif 'start' in parts[0].lower() and 'time' in parts[0].lower():
-            current_suggestion['start_time'] = parts[1].strip()
-        elif 'end' in parts[0].lower() and 'time' in parts[0].lower():
-            current_suggestion['end_time'] = parts[1].strip()
-        elif 'duration' in parts[0].lower():
-            current_suggestion['duration_hours'] = parts[1].strip()
-        elif 'task' in parts[0].lower():
-            current_suggestion['task'] = parts[1].strip()
-        elif 'project' in parts[0].lower():
-            current_suggestion['project'] = parts[1].strip()
-        elif 'billable' in parts[0].lower():
-            current_suggestion['billable'] = 'yes' in parts[1].lower() or 'true' in parts[1].lower()
+        # Check if this is a numbered item (starts with digit followed by period)
+        numbered_match = re.match(r'^\d+\.\s+(.+)$', line)
+        if numbered_match:
+            # Save previous suggestion if exists
+            if current_suggestion and len(current_suggestion) > 1:
+                suggestions.append(current_suggestion.copy())
+            current_suggestion = {}
+            
+            # Parse date, time range, and duration from first line
+            # Format: "November 13, 2025, 09:00-10:00 (1 hour)"
+            content = numbered_match.group(1)
+            
+            # Extract date (everything before the time range)
+            date_match = re.search(r'([A-Za-z]+\s+\d{1,2},\s+\d{4})', content)
+            if date_match:
+                current_suggestion['date'] = date_match.group(1)
+            
+            # Extract time range (HH:MM-HH:MM)
+            time_match = re.search(r'(\d{2}:\d{2})-(\d{2}:\d{2})', content)
+            if time_match:
+                current_suggestion['start_time'] = time_match.group(1)
+                current_suggestion['end_time'] = time_match.group(2)
+            
+            # Extract duration (number followed by "hour")
+            duration_match = re.search(r'\((\d+\.?\d*)\s*hours?\)', content)
+            if duration_match:
+                current_suggestion['duration_hours'] = float(duration_match.group(1))
+            
+            continue
+        
+        # Parse key-value lines
+        if ':' in line:
+            parts = line.split(':', 1)
+            if len(parts) < 2:
+                continue
+            
+            key = parts[0].strip().lower()
+            value = parts[1].strip()
+            
+            # Match various field patterns
+            if 'task' in key or 'description' in key:
+                current_suggestion['task'] = value
+            elif 'project' in key:
+                current_suggestion['project'] = value
+            elif 'billable' in key:
+                current_suggestion['billable'] = any(word in value.lower() for word in ['yes', 'true', 'billable'])
+            elif 'rationale' in key or 'reason' in key:
+                current_suggestion['rationale'] = value
     
-    if current_suggestion:
-        suggestions.append(current_suggestion)
+    # Add the last suggestion if it exists
+    if current_suggestion and len(current_suggestion) > 1:
+        suggestions.append(current_suggestion.copy())
     
     return suggestions
 

@@ -24,13 +24,15 @@ def get_timesheet_entries(user_email: str) -> str:
     data_path = Path(__file__).parent.parent / "shared" / "timesheet_sample.json"
     
     with open(data_path, 'r') as f:
-        data = json.load(f)
+        all_users = json.load(f)
     
-    # Check if this is the correct user
-    if data.get('user') == user_email:
-        return json.dumps(data, indent=2)
-    else:
-        return json.dumps({"user": user_email, "entries": [], "error": "No timesheet found for user"})
+    # Find the user's timesheet in the array
+    for user_data in all_users:
+        if user_data.get('user') == user_email:
+            return json.dumps(user_data, indent=2)
+    
+    # User not found
+    return json.dumps({"user": user_email, "entries": [], "error": "No timesheet found for user"})
 
 
 def create_timesheet_agent(chat_client):
