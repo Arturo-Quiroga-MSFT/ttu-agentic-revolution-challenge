@@ -12,7 +12,7 @@ echo "=========================================================="
 APP_NAME="ccg-multi-agent-prod"
 RESOURCE_GROUP="rg-${APP_NAME}"
 LOCATION="eastus"
-ACR_NAME="acr${APP_NAME//-/}$(date +%s)"
+ACR_NAME="acrccgmultiagentprod"
 ENVIRONMENT_NAME="env-${APP_NAME}"
 IMAGE_NAME="${APP_NAME}:latest"
 
@@ -41,23 +41,28 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     exit 1
 fi
 
-# Step 1: Create resource group
+# Step 1: Create resource group (if not exists)
 echo ""
-echo "📦 Step 1: Creating resource group..."
+echo "📦 Step 1: Ensuring resource group exists..."
 az group create \
     --name $RESOURCE_GROUP \
     --location $LOCATION \
     --output table
 
-# Step 2: Create Azure Container Registry
+# Step 2: Create or reuse Azure Container Registry
 echo ""
-echo "🐳 Step 2: Creating Azure Container Registry..."
-az acr create \
-    --resource-group $RESOURCE_GROUP \
-    --name $ACR_NAME \
-    --sku Basic \
-    --admin-enabled true \
-    --output table
+echo "🐳 Step 2: Ensuring Azure Container Registry exists..."
+if az acr show --name $ACR_NAME --resource-group $RESOURCE_GROUP &> /dev/null; then
+    echo "✅ ACR '$ACR_NAME' already exists, reusing it"
+else
+    echo "🆕 Creating new ACR '$ACR_NAME'..."
+    az acr create \
+        --resource-group $RESOURCE_GROUP \
+        --name $ACR_NAME \
+        --sku Basic \
+        --admin-enabled true \
+        --output table
+fi
 
 # Step 3: Build and push image to ACR
 echo ""
@@ -78,39 +83,99 @@ ACR_PASSWORD=$(az acr credential show --name $ACR_NAME --resource-group $RESOURC
 
 echo "  ACR Server: $ACR_SERVER"
 
-# Step 5: Create Container Apps environment
+# Step 5: Create Container Apps environment (if not exists)
 echo ""
-echo "🌍 Step 5: Creating Container Apps environment..."
-az containerapp env create \
-    --name $ENVIRONMENT_NAME \
-    --resource-group $RESOURCE_GROUP \
-    --location $LOCATION \
-    --output table
+echo "🌍 Step 5: Ensuring Container Apps environment exists..."
+if az containerapp env show --name $ENVIRONMENT_NAME --resource-group $RESOURCE_GROUP &> /dev/null; then
+    echo "✅ Environment '$ENVIRONMENT_NAME' already exists, reusing it"
+else
+    echo "🆕 Creating new environment '$ENVIRONMENT_NAME'..."
+    az containerapp env create \
+        --name $ENVIRONMENT_NAME \
+        --resource-group $RESOURCE_GROUP \
+        --location $LOCATION \
+        --output table
+fi
 
-# Step 6: Create Container App
+# Step 6: Create or update Container App
 echo ""
-echo "📱 Step 6: Creating Container App..."
-az containerapp create \
-    --name $APP_NAME \
-    --resource-group $RESOURCE_GROUP \
-    --environment $ENVIRONMENT_NAME \
-    --image "${ACR_SERVER}/${IMAGE_NAME}" \
-    --registry-server $ACR_SERVER \
-    --registry-username $ACR_USERNAME \
-    --registry-password $ACR_PASSWORD \
-    --target-port 8501 \
-    --ingress external \
-    --env-vars \
-        "USE_AZURE_OPENAI=${USE_AZURE_OPENAI}" \
-        "AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}" \
-        "AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}" \
-        "AZURE_OPENAI_DEPLOYMENT_NAME=${AZURE_OPENAI_DEPLOYMENT_NAME}" \
-        "AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}" \
-    --cpu 1.0 \
-    --memory 2.0Gi \
-    --min-replicas 1 \
-    --max-replicas 3 \
-    --output table
+echo "📱 Step 6: Deploying Container App..."
+if az containerapp show --name $APP_NAME --resource-group $RESOURCE_GROUP &> /dev/null; then
+    echo "🔄 App '$APP_NAME' exists. Checking if recreation is needed..."
+    
+    # Check if the image uses old ACR
+    CURRENT_IMAGE=$(az containerapp show --name $APP_NAME --resource-group $RESOURCE_GROUP --query "properties.template.containers[0].image" -o tsv 2>/dev/null)
+    
+    if [[ "$CURRENT_IMAGE" != "${ACR_SERVER}/${IMAGE_NAME}" ]]; then
+        echo "⚠️  Image mismatch detected. Current: $CURRENT_IMAGE"
+        echo "🗑️  Deleting old app to recreate with correct ACR..."
+        az containerapp delete \
+            --name $APP_NAME \
+            --resource-group $RESOURCE_GROUP \
+            --yes
+        echo "✅ Old app deleted"
+        
+        # Create new app
+        echo "🆕 Creating new app '$APP_NAME' with correct ACR..."
+        az containerapp create \
+            --name $APP_NAME \
+            --resource-group $RESOURCE_GROUP \
+            --environment $ENVIRONMENT_NAME \
+            --image "${ACR_SERVER}/${IMAGE_NAME}" \
+            --registry-server $ACR_SERVER \
+            --registry-username $ACR_USERNAME \
+            --registry-password $ACR_PASSWORD \
+            --target-port 8501 \
+            --ingress external \
+            --env-vars \
+                "USE_AZURE_OPENAI=${USE_AZURE_OPENAI}" \
+                "AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}" \
+                "AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}" \
+                "AZURE_OPENAI_DEPLOYMENT_NAME=${AZURE_OPENAI_DEPLOYMENT_NAME}" \
+                "AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}" \
+            --cpu 1.0 \
+            --memory 2.0Gi \
+            --min-replicas 1 \
+            --max-replicas 3 \
+            --output table
+    else
+        echo "✅ Image is correct. Updating app..."
+        az containerapp update \
+            --name $APP_NAME \
+            --resource-group $RESOURCE_GROUP \
+            --image "${ACR_SERVER}/${IMAGE_NAME}" \
+            --set-env-vars \
+                "USE_AZURE_OPENAI=${USE_AZURE_OPENAI}" \
+                "AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}" \
+                "AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}" \
+                "AZURE_OPENAI_DEPLOYMENT_NAME=${AZURE_OPENAI_DEPLOYMENT_NAME}" \
+                "AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}" \
+            --output table
+    fi
+else
+    echo "🆕 Creating new app '$APP_NAME'..."
+    az containerapp create \
+        --name $APP_NAME \
+        --resource-group $RESOURCE_GROUP \
+        --environment $ENVIRONMENT_NAME \
+        --image "${ACR_SERVER}/${IMAGE_NAME}" \
+        --registry-server $ACR_SERVER \
+        --registry-username $ACR_USERNAME \
+        --registry-password $ACR_PASSWORD \
+        --target-port 8501 \
+        --ingress external \
+        --env-vars \
+            "USE_AZURE_OPENAI=${USE_AZURE_OPENAI}" \
+            "AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}" \
+            "AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}" \
+            "AZURE_OPENAI_DEPLOYMENT_NAME=${AZURE_OPENAI_DEPLOYMENT_NAME}" \
+            "AZURE_OPENAI_API_VERSION=${AZURE_OPENAI_API_VERSION}" \
+        --cpu 1.0 \
+        --memory 2.0Gi \
+        --min-replicas 1 \
+        --max-replicas 3 \
+        --output table
+fi
 
 # Step 7: Get app URL
 echo ""

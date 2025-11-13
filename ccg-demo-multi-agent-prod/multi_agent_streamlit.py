@@ -34,7 +34,7 @@ if "analysis_results" not in st.session_state:
 if "suggestions_parsed" not in st.session_state:
     st.session_state.suggestions_parsed = []
 if "user_email" not in st.session_state:
-    st.session_state.user_email = "sarah.johnson@contoso.com"
+    st.session_state.user_email = "arturoqu@microsoft.com"
 
 
 def initialize_orchestrator():
@@ -44,20 +44,19 @@ def initialize_orchestrator():
     use_azure = os.getenv("USE_AZURE_OPENAI", "true").lower() == "true"
     
     if use_azure:
-        from microsoft_agent import AzureOpenAIChatClient
+        from agent_framework.azure import AzureOpenAIChatClient
         
         client = AzureOpenAIChatClient(
+            deployment_name=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME", "gpt-4.1-mini"),
             endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
-            api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-            model=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME", "gpt-4.1-mini"),
-            api_version=os.getenv("AZURE_OPENAI_API_VERSION", "2024-10-21")
+            api_key=os.getenv("AZURE_OPENAI_API_KEY")
         )
     else:
-        from microsoft_agent import OpenAIChatClient
+        from agent_framework.openai import OpenAIChatClient
         
         client = OpenAIChatClient(
-            api_key=os.getenv("OPENAI_API_KEY"),
-            model=os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
+            model_id=os.getenv("OPENAI_MODEL", "gpt-4.1-mini"),
+            api_key=os.getenv("OPENAI_API_KEY")
         )
     
     return create_orchestrator(client)
@@ -70,6 +69,9 @@ def parse_suggestions(suggestion_text):
     """
     suggestions = []
     
+    if not suggestion_text:
+        return suggestions
+    
     # Look for common patterns in the suggestion text
     lines = suggestion_text.split('\n')
     
@@ -77,22 +79,29 @@ def parse_suggestions(suggestion_text):
     for line in lines:
         line = line.strip()
         
-        if 'date:' in line.lower():
+        if not line or ':' not in line:
+            continue
+            
+        parts = line.split(':', 1)
+        if len(parts) < 2:
+            continue
+        
+        if 'date' in parts[0].lower():
             if current_suggestion:
                 suggestions.append(current_suggestion)
-            current_suggestion = {'date': line.split(':', 1)[1].strip()}
-        elif 'start' in line.lower() and 'time' in line.lower():
-            current_suggestion['start_time'] = line.split(':', 1)[1].strip()
-        elif 'end' in line.lower() and 'time' in line.lower():
-            current_suggestion['end_time'] = line.split(':', 1)[1].strip()
-        elif 'duration' in line.lower():
-            current_suggestion['duration_hours'] = line.split(':', 1)[1].strip()
-        elif 'task:' in line.lower():
-            current_suggestion['task'] = line.split(':', 1)[1].strip()
-        elif 'project:' in line.lower():
-            current_suggestion['project'] = line.split(':', 1)[1].strip()
-        elif 'billable:' in line.lower():
-            current_suggestion['billable'] = 'yes' in line.lower() or 'true' in line.lower()
+            current_suggestion = {'date': parts[1].strip()}
+        elif 'start' in parts[0].lower() and 'time' in parts[0].lower():
+            current_suggestion['start_time'] = parts[1].strip()
+        elif 'end' in parts[0].lower() and 'time' in parts[0].lower():
+            current_suggestion['end_time'] = parts[1].strip()
+        elif 'duration' in parts[0].lower():
+            current_suggestion['duration_hours'] = parts[1].strip()
+        elif 'task' in parts[0].lower():
+            current_suggestion['task'] = parts[1].strip()
+        elif 'project' in parts[0].lower():
+            current_suggestion['project'] = parts[1].strip()
+        elif 'billable' in parts[0].lower():
+            current_suggestion['billable'] = 'yes' in parts[1].lower() or 'true' in parts[1].lower()
     
     if current_suggestion:
         suggestions.append(current_suggestion)
@@ -319,18 +328,25 @@ with tab2:
                 st.session_state.orchestrator = initialize_orchestrator()
             
             with st.status("💰 Calculating revenue impact...", expanded=True) as status:
-                results = asyncio.run(
-                    st.session_state.orchestrator.calculate_impact(
-                        user_email=impact_email,
-                        missing_hours=missing_hours,
-                        billable_rate=billable_rate
+                try:
+                    results = asyncio.run(
+                        st.session_state.orchestrator.calculate_impact(
+                            user_email=impact_email,
+                            missing_hours=missing_hours,
+                            billable_rate=billable_rate
+                        )
                     )
-                )
-                
-                st.markdown("### 📊 Financial Analysis")
-                st.markdown(results.get("revenue_analysis", "No data"))
-                
-                status.update(label="✅ Calculation complete!", state="complete")
+                    
+                    st.markdown("### 📊 Financial Analysis")
+                    if results.get("revenue_analysis"):
+                        st.markdown(results["revenue_analysis"])
+                    else:
+                        st.warning("No revenue analysis data returned")
+                    
+                    status.update(label="✅ Calculation complete!", state="complete")
+                except Exception as e:
+                    st.error(f"Error calculating revenue impact: {str(e)}")
+                    status.update(label="❌ Calculation failed", state="error")
 
 # Tab 3: Audit Log
 with tab3:
@@ -348,12 +364,18 @@ with tab3:
                 st.session_state.orchestrator = initialize_orchestrator()
             
             with st.spinner("Loading audit log..."):
-                audit_results = asyncio.run(
-                    st.session_state.orchestrator.get_audit_history(limit=audit_limit)
-                )
-                
-                st.markdown("### 📜 Recent Operations")
-                st.markdown(audit_results.get("audit_log", "No audit entries found"))
+                try:
+                    audit_results = asyncio.run(
+                        st.session_state.orchestrator.get_audit_history(limit=audit_limit)
+                    )
+                    
+                    st.markdown("### 📜 Recent Operations")
+                    if audit_results.get("audit_log"):
+                        st.markdown(audit_results["audit_log"])
+                    else:
+                        st.info("No audit entries found")
+                except Exception as e:
+                    st.error(f"Error loading audit log: {str(e)}")
     
     st.info("💡 All write operations (approvals and rejections) are logged with timestamps, user info, and complete entry details for compliance and troubleshooting.")
 
@@ -431,10 +453,15 @@ with tab4:
 with st.sidebar:
     st.markdown("### 🎛️ System Status")
     
-    if st.session_state.orchestrator:
-        st.success("✅ Orchestrator initialized")
+    # Try to initialize orchestrator on first load
+    if not st.session_state.orchestrator:
+        try:
+            st.session_state.orchestrator = initialize_orchestrator()
+            st.success("✅ Orchestrator initialized")
+        except Exception as e:
+            st.error(f"❌ Orchestrator initialization failed: {str(e)}")
     else:
-        st.warning("⚠️ Orchestrator not initialized")
+        st.success("✅ Orchestrator initialized")
     
     st.divider()
     
