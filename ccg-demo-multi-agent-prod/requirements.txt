@@ -2,3 +2,4 @@ agent-framework
 python-dotenv
 azure-identity
 streamlit
+streamlit-mermaid

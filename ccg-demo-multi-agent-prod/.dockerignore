@@ -23,7 +23,6 @@ venv/
 
 # Logs
 *.log
-audit_log.json
 
 # OS
 .DS_Store
@@ -33,7 +32,3 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
-
-# Data (exclude from Docker context)
-shared/*.json
-!shared/.gitkeep

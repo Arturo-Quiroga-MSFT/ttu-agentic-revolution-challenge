@@ -18,10 +18,14 @@ This project demonstrates an intelligent AI agent built with **Microsoft Agent F
 ### Key Features
 
 - 🔍 **Automatic Missing Time Detection** - Cross-references calendar and timesheet data
-- 💰 **Revenue Impact Calculation** - Calculates lost billable hours ($2.6M annually for 50 consultants)
+- 💰 **Revenue Impact Calculation** - Calculates lost billable hours and financial impact
 - 🧠 **Multi-turn Conversation Memory** - Maintains context across interactions
 - 🎯 **Context-aware Billability Rules** - Intelligently determines what should be billable
-- 🛠️ **Function Calling** - Uses 4 tools: calendar access, timesheet access, suggestions, revenue calculation
+- 🛠️ **Function Calling** - Multiple tools: calendar, timesheet, suggestions, revenue, approval
+- ✅ **Approval Workflow** - Review and approve/reject suggestions with audit trail (Production)
+- 👥 **Multi-Consultant Support** - 5 consultants with diverse timesheet patterns
+- 🔄 **Parallel Agent Execution** - Calendar and timesheet agents run simultaneously
+- 📊 **Enhanced UI** - Consultant dropdown, question box, visual architecture diagram
 
 ### Business Impact
 
@@ -33,7 +37,7 @@ This project demonstrates an intelligent AI agent built with **Microsoft Agent F
 
 ```
 .
-├── ccg-demo/                          # Single-agent demo (recommended starting point)
+├── ccg-demo/                          # Single-agent demo (development version)
 │   ├── streamlit_app.py              # Web UI (Streamlit)
 │   ├── agent_demo.py                 # Console demo
 │   ├── calendar_plugin.py            # Calendar function tool
@@ -42,9 +46,8 @@ This project demonstrates an intelligent AI agent built with **Microsoft Agent F
 │   ├── timesheet_sample.json         # Sample timesheet data
 │   ├── requirements.txt              # Python dependencies
 │   ├── .env.example                  # Environment variable template
-│   ├── README.md                     # Demo instructions
-│   └── DEMO_IMPROVEMENTS.md          # Enhancement documentation
-├── ccg-demo-multi-agent/              # Multi-agent architecture (advanced)
+│   └── README.md                     # Demo instructions
+├── ccg-demo-multi-agent/              # Multi-agent architecture (development)
 │   ├── README.md                     # Multi-agent documentation
 │   ├── requirements.txt              # Dependencies
 │   ├── .env.example                  # Config template
@@ -54,37 +57,65 @@ This project demonstrates an intelligent AI agent built with **Microsoft Agent F
 │   │   ├── suggestion_agent.py       # Recommendation specialist
 │   │   ├── revenue_agent.py          # Financial impact specialist
 │   │   └── orchestrator_agent.py     # Workflow coordinator
-│   ├── shared/                       # Shared data (symlinks to ccg-demo/)
-│   │   ├── calendar_sample.json      # -> ../../ccg-demo/calendar_sample.json
-│   │   └── timesheet_sample.json     # -> ../../ccg-demo/timesheet_sample.json
-│   ├── multi_agent_demo.py           # Console demo (coming soon)
-│   └── multi_agent_streamlit.py      # Streamlit UI (coming soon)
+│   ├── shared/                       # Shared data
+│   │   ├── calendar_sample.json      # 40 events for arturoqu@microsoft.com
+│   │   └── timesheet_sample.json     # Partial entries with missing time
+│   └── multi_agent_streamlit.py      # Streamlit UI
+├── ccg-demo-multi-agent-prod/         # PRODUCTION VERSION ⭐
+│   ├── multi_agent_streamlit.py      # Production web UI with approval workflow
+│   ├── requirements.txt              # Dependencies (agent-framework, streamlit)
+│   ├── .env.example                  # Config template
+│   ├── Dockerfile                    # Container image definition
+│   ├── deploy-aca-clean.sh           # Azure Container Apps deployment script
+│   ├── agents/                       # Production agents
+│   │   ├── calendar_agent.py         # Calendar analysis
+│   │   ├── timesheet_agent.py        # Timesheet validation
+│   │   ├── suggestion_agent.py       # Missing entry detection
+│   │   ├── approval_agent.py         # Approval workflow handler (PROD only)
+│   │   ├── revenue_agent.py          # Revenue impact calculator
+│   │   └── orchestrator_agent.py     # Multi-agent coordinator
+│   ├── shared/                       # Enhanced production data
+│   │   ├── calendar_sample.json      # 53 events for 5 consultants
+│   │   ├── timesheet_sample.json     # 5 consultants with varied patterns
+│   │   └── audit_log.json            # Approval/rejection audit trail
+│   ├── diagrams/                     # Architecture documentation
+│   │   └── architecture.md           # Mermaid diagram
+│   └── tools/                        # Production function tools
 ├── ccg-presentation/                  # Presentation materials
 │   ├── CCG_Readout.md                # 3-slide readout + script
 │   ├── CCG_Readout.pptx              # PowerPoint presentation
 │   ├── Architecture_Diagram.md       # Mermaid diagrams
-│   ├── PPT_Slide_Content.md          # Detailed slide content
-│   ├── solution-architecture.mmd     # Full architecture diagram
-│   ├── simplified-architecture.mmd   # Simple architecture diagram
-│   └── data-flow-sequence.mmd        # Sequence diagram
+│   └── *.mmd                         # Various architecture diagrams
 └── Agentic_revolution_challenge_materials/  # Event materials
     └── ...
 ```
 
-### Implementation Approaches
+### Implementation Versions
 
 **Single-Agent (`ccg-demo/`):**
 - ✅ Simpler implementation, easier to understand
 - ✅ All-in-one agent with multiple function tools
 - ✅ Best for POC and straightforward demos
-- Sequential processing
+- ✅ Sequential processing
+- Read-only operations
 
-**Multi-Agent (`ccg-demo-multi-agent/`):**
+**Multi-Agent Dev (`ccg-demo-multi-agent/`):**
 - ✅ Specialized agents for different domains
-- ✅ Can execute agents in parallel for better performance
-- ✅ Easier to maintain and extend individual capabilities
-- ✅ Production-ready architecture
-- Better for complex workflows
+- ✅ Parallel execution for better performance
+- ✅ Easier to maintain and extend
+- ✅ Production-ready architecture foundation
+- Read-only operations
+
+**Multi-Agent Production (`ccg-demo-multi-agent-prod/`):** ⭐
+- ✅ Full approval workflow with write capabilities
+- ✅ 5 consultants with rich demo data (53 calendar events)
+- ✅ Consultant dropdown selector + question box
+- ✅ Approval/rejection with audit trail
+- ✅ Enhanced parser for multiple suggestion formats
+- ✅ Revenue impact calculator
+- ✅ Deployed to Azure Container Apps
+- ✅ Production-grade error handling
+- **Live URL**: https://ccg-multi-agent-prod.wittyground-92ec3597.eastus.azurecontainerapps.io
 
 ## 🛠️ Technology Stack
 
@@ -102,192 +133,165 @@ This project demonstrates an intelligent AI agent built with **Microsoft Agent F
 - Azure OpenAI account (or OpenAI API key)
 - Git
 
-### Installation
+### Running Locally
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/ttu-agentic-revolution-challenge.git
-   cd ttu-agentic-revolution-challenge
-   ```
-
-2. **Create virtual environment**
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r ccg-demo/requirements.txt
-   ```
-
-4. **Configure environment**
-   ```bash
-   cp ccg-demo/.env.example ccg-demo/.env
-   # Edit .env with your Azure OpenAI credentials
-   ```
-
-### Running the Demo
-
-#### Option 1: Web UI (Recommended for Presentations)
+#### Option 1: Production Version (Recommended for Demos)
 ```bash
-streamlit run ccg-demo/streamlit_app.py
+cd ccg-demo-multi-agent-prod
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env
+# Edit .env with your Azure OpenAI credentials
+streamlit run multi_agent_streamlit.py --server.port 8502
 ```
-Then open http://localhost:8501 in your browser.
+Open http://localhost:8502
 
-#### Option 2: Console Demo
+#### Option 2: Development Single-Agent Version
 ```bash
-python ccg-demo/agent_demo.py
+cd ccg-demo
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+# Edit .env with your credentials
+streamlit run streamlit_app.py
 ```
+Open http://localhost:8501
+
+### Azure Deployment (Production)
+
+```bash
+cd ccg-demo-multi-agent-prod
+./deploy-aca-clean.sh
+```
+
+This deploys to Azure Container Apps with:
+- Docker containerization
+- Azure Container Registry
+- Automatic scaling
+- HTTPS endpoint
 
 ## 🎯 Demo Flow
 
-### Web UI Demo (3-5 minutes)
+### Production Web UI Demo (5-7 minutes)
 
-1. **Open the app** - Clean, professional interface with branding
-2. **Click "📋 Review my calendar..."** - Agent analyzes and finds 8 missing hours
-3. **Click "💰 Calculate the revenue..."** - Shows $2,000 impact
-4. **Click "✅ Yes, please proceed..."** - Demonstrates multi-turn memory
-5. **Type custom questions** - Shows natural conversation capability
+**Live URL**: https://ccg-multi-agent-prod.wittyground-92ec3597.eastus.azurecontainerapps.io
+
+1. **Select Consultant** - Choose from 5 consultants with different patterns:
+   - arturoqu@microsoft.com - Multiple missing travel entries
+   - sarah.chen@contoso.com - Missing flight to Seattle
+   - marcus.johnson@contoso.com - Missing drive to Chicago
+   - priya.patel@contoso.com - Missing flight AND client dinner
+   - james.rodriguez@contoso.com - Complete timesheet (good example)
+
+2. **Ask Questions** (Optional) - Type specific questions like:
+   - "What meetings did I miss logging?"
+   - "How many billable hours am I missing?"
+
+3. **Click "Analyze Missing Time"** - Multi-agent analysis runs:
+   - Calendar Agent analyzes events
+   - Timesheet Agent checks entries
+   - Suggestion Agent identifies gaps
+   - Shows detailed suggestions with rationale
+
+4. **Review Approval Workflow** - Interactive cards showing:
+   - Missing entry details (task, project, duration, billable status)
+   - Approve/Reject buttons for each suggestion
+
+5. **Check Revenue Impact** - Navigate to Revenue Impact tab:
+   - Shows total missing billable hours
+   - Calculates dollar value ($250/hour default rate)
+   - Displays business impact
+
+6. **View Audit Log** - Check Audit Log tab:
+   - Complete history of approvals/rejections
+   - Timestamps and user attribution
+   - Immutable audit trail
 
 ### Sample Questions
 
-- "Review my calendar and timesheet for November 13-14, 2025. My email is alice@ccg.com."
-- "Calculate the revenue impact for the missing billable hours you found."
+- "What meetings did I miss logging?"
+- "How many billable hours am I missing this week?"
+- "Show me all client meetings without timesheet entries"
+- "Calculate the revenue impact for my missing time"
 - "Which entries are billable vs non-billable?"
-- "Can you help me understand my missing time entries?"
-- "Yes, please proceed with submitting those missing timesheet entries."
 
 ## 🏗️ Architecture
 
-### Simplified Architecture
+### Production Multi-Agent Architecture
 
-```mermaid
-graph LR
-    User[👤 User] -->|Query| Agent[🤖 ChatAgent<br/>Microsoft Agent Framework]
-    Agent -->|Reasoning| GPT[💭 gpt-4.1/gpt-5-mini<br/>Azure OpenAI]
-    Agent -->|Calls| Tools[🔧 Function Tools]
-    
-    subgraph Tools
-        T1[📅 Calendar]
-        T2[⏱️ Timesheet]
-        T3[💡 Suggestions]
-        T4[💰 Revenue]
-    end
-    
-    Tools -->|Data| Data[(📊 Sample Data)]
-    Agent -->|Response| User
-
-    style Agent fill:#0078d4,color:#fff
-    style GPT fill:#50e6ff,color:#000
-    style Tools fill:#68217a,color:#fff
-```
-
-### Detailed Solution Architecture
+The production system uses specialized agents coordinated by an orchestrator:
 
 ```mermaid
 graph TB
-    subgraph "User Interface Layer"
-        UI1[Streamlit Web UI<br/>streamlit_app.py]
-        UI2[Console Demo<br/>agent_demo.py]
+    subgraph UI["User Interface Layer"]
+        User["👤 Consultant"]
+        WebUI["🖥️ Streamlit Web UI"]
     end
-
-    subgraph "Microsoft Agent Framework"
-        Agent[ChatAgent<br/>gpt-4.1/gpt-5-mini Reasoning]
-        Thread[AgentThread<br/>Conversation Memory]
-        Tools[Function Tools Registry]
+    
+    subgraph Framework["Microsoft Agent Framework"]
+        Orch["🎯 Orchestrator Agent"]
+        
+        subgraph Agents["Specialized Agents"]
+            CalAgent["📅 Calendar Agent"]
+            TimeAgent["📝 Timesheet Agent"]
+            SugAgent["💡 Suggestion Agent"]
+            AppAgent["✅ Approval Agent"]
+            RevAgent["💰 Revenue Agent"]
+        end
     end
-
-    subgraph "Function Tools"
-        T1[get_calendar_events<br/>Retrieves calendar data]
-        T2[get_timesheet_entries<br/>Retrieves timesheet data]
-        T3[suggest_timesheet_entry<br/>Proposes missing entries]
-        T4[calculate_revenue_impact<br/>Computes business value]
+    
+    subgraph AI["AI Model"]
+        GPT["🤖 Azure OpenAI<br/>gpt-4.1-mini"]
     end
-
-    subgraph "Data Layer"
-        D1[(Calendar Data<br/>calendar_sample.json)]
-        D2[(Timesheet Data<br/>timesheet_sample.json)]
+    
+    subgraph Data["Data Layer"]
+        CalData["📁 Calendar Data<br/>53 events, 5 consultants"]
+        TimeData["📁 Timesheet Data<br/>5 consultants"]
+        AuditData["📋 Audit Log<br/>Approval history"]
     end
-
-    subgraph "AI Model"
-        Azure[Azure OpenAI<br/>gpt-4.1/gpt-5-mini]
-    end
-
-    UI1 -->|User Query| Agent
-    UI2 -->|User Query| Agent
-    Agent -->|Maintains Context| Thread
-    Agent -->|Selects & Calls| Tools
-    Tools -->|Register| T1
-    Tools -->|Register| T2
-    Tools -->|Register| T3
-    Tools -->|Register| T4
-    T1 -->|Read| D1
-    T2 -->|Read| D2
-    T3 -->|Read| D1
-    T3 -->|Read| D2
-    T4 -->|Calculate| T2
-    Agent <-->|API Calls| Azure
-    Thread -->|Context| Agent
-    Tools -->|Results| Agent
-    Agent -->|Structured Response| UI1
-    Agent -->|Structured Response| UI2
-
-    style Agent fill:#0078d4,color:#fff
-    style Azure fill:#50e6ff,color:#000
-    style Thread fill:#00bcf2,color:#fff
-    style Tools fill:#68217a,color:#fff
-    style UI1 fill:#107c10,color:#fff
-    style UI2 fill:#107c10,color:#fff
+    
+    User -->|Query| WebUI
+    WebUI -->|Initialize| Orch
+    Orch -->|Parallel| CalAgent
+    Orch -->|Parallel| TimeAgent
+    Orch -->|Synthesize| SugAgent
+    Orch -->|Calculate| RevAgent
+    WebUI -->|Approve/Reject| AppAgent
+    
+    CalAgent -.->|Reasoning| GPT
+    TimeAgent -.->|Reasoning| GPT
+    SugAgent -.->|Reasoning| GPT
+    RevAgent -.->|Reasoning| GPT
+    AppAgent -.->|Reasoning| GPT
+    
+    CalAgent -->|Read| CalData
+    TimeAgent -->|Read| TimeData
+    SugAgent -->|Read| CalData
+    SugAgent -->|Read| TimeData
+    AppAgent -->|Write| TimeData
+    AppAgent -->|Log| AuditData
+    
+    style Orch fill:#0078d4,color:#fff
+    style GPT fill:#50e6ff,color:#000
+    style Agents fill:#68217a,color:#fff
 ```
 
-### Data Flow Sequence
+**Key Components:**
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant ChatAgent
-    participant GPT4.1/5-mini
-    participant CalendarTool
-    participant TimesheetTool
-    participant SuggestionTool
+1. **Orchestrator Agent** - Coordinates workflow and agent execution
+2. **Calendar Agent** - Analyzes calendar events for billable activities
+3. **Timesheet Agent** - Validates existing timesheet entries
+4. **Suggestion Agent** - Identifies missing entries with rationale
+5. **Approval Agent** - Handles approve/reject workflow with audit trail
+6. **Revenue Agent** - Calculates financial impact of missing time
 
-    User->>ChatAgent: "Review my calendar and timesheet"
-    ChatAgent->>GPT4.1/5-mini: Process query with instructions
-    GPT4.1/5-mini->>ChatAgent: Decision: Call calendar function
-    ChatAgent->>CalendarTool: get_calendar_events("arturo@ccg.com")
-    CalendarTool-->>ChatAgent: 7 events (14 hours total)
-    ChatAgent->>GPT4.1/5-mini: Here's calendar data
-    GPT4.1/5-mini->>ChatAgent: Decision: Call timesheet function
-    ChatAgent->>TimesheetTool: get_timesheet_entries("arturo@ccg.com")
-    TimesheetTool-->>ChatAgent: 2 entries (3.5 hours logged)
-    ChatAgent->>GPT4.1/5-mini: Compare data
-    GPT4.1/5-mini->>ChatAgent: Decision: Call suggestion function
-    ChatAgent->>SuggestionTool: suggest_timesheet_entry(...)
-    SuggestionTool-->>ChatAgent: 5 missing entries (8 hours)
-    ChatAgent->>GPT4.1/5-mini: Format response
-    GPT4.1/5-mini->>ChatAgent: Structured analysis with rationale
-    ChatAgent->>User: "Found 8 missing hours worth $2,000..."
-    User->>ChatAgent: "Yes, submit those entries"
-    ChatAgent->>GPT4.1/5-mini: Process confirmation
-    GPT4.1/5-mini->>ChatAgent: Confirm action
-    ChatAgent->>User: "✅ All 5 entries confirmed"
-```
-
-### Multi-turn Conversation
-
-- Uses `AgentThread` for conversation memory
-- Automatically maintains context across interactions
-- Supports follow-up questions and clarifications
-
-### Function Tools
-
-All tools are simple Python functions (no decorators or complex plugins):
-
-1. **`get_calendar_events(user_email)`** - Returns calendar events from JSON
-2. **`get_timesheet_entries(user_email)`** - Returns existing timesheet entries
-3. **`suggest_timesheet_entry(...)`** - Records a suggestion with rationale
-4. **`calculate_revenue_impact(user_email, billable_rate)`** - Calculates financial impact
+**Deployment:**
+- Containerized with Docker
+- Deployed to Azure Container Apps
+- Auto-scaling based on load
+- Production data with 5 consultants
 
 ## 📊 Business Value
 
@@ -310,24 +314,31 @@ All tools are simple Python functions (no decorators or complex plugins):
 
 ## 🔮 Production Roadmap
 
-### Phase 1: POC (Complete)
+### Phase 1: POC (✅ Complete)
 - ✅ Agent with function tools
 - ✅ Sample data (JSON files)
 - ✅ Web UI for demos
 - ✅ Multi-turn conversation
+- ✅ Multi-agent architecture with orchestrator
+- ✅ Approval workflow with audit trail
+- ✅ 5 consultants with rich demo data
+- ✅ Azure Container Apps deployment
+- ✅ Enhanced UI with dropdowns and question box
 
 ### Phase 2: Integration (2-4 weeks)
 - [ ] Microsoft Graph API for real calendar data
 - [ ] ERP system integration (SAP/Workday/NetSuite)
 - [ ] Azure Active Directory authentication
-- [ ] Approval workflow (Teams notifications)
+- [ ] Approval workflow via Teams notifications
+- [ ] Email notifications for missing time
 
 ### Phase 3: Scale (4-8 weeks)
-- [ ] Multi-agent architecture (calendar agent + timesheet agent + approval agent)
 - [ ] Manager dashboard with analytics
 - [ ] Personalized billability rules per consultant
 - [ ] Historical learning from corrections
 - [ ] Audit trail and compliance reporting
+- [ ] Weekly automated reminders
+- [ ] Mobile app integration
 
 ## 📚 Documentation
 

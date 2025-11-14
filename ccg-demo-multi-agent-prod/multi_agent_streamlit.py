@@ -169,15 +169,37 @@ tab1, tab2, tab3, tab4 = st.tabs([
 with tab1:
     st.header("Missing Time Analysis & Approval Workflow")
     
+    # Consultant list
+    available_consultants = [
+        "arturoqu@microsoft.com",
+        "sarah.chen@contoso.com",
+        "marcus.johnson@contoso.com",
+        "priya.patel@contoso.com",
+        "james.rodriguez@contoso.com"
+    ]
+    
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        user_email = st.text_input(
-            "User Email",
-            value=st.session_state.user_email,
-            help="Enter the email of the consultant to analyze"
+        st.markdown("**Select Consultant:**")
+        user_email = st.selectbox(
+            "Available Consultants",
+            options=available_consultants,
+            index=available_consultants.index(st.session_state.user_email) if st.session_state.user_email in available_consultants else 0,
+            help="Select a consultant to analyze",
+            label_visibility="collapsed"
         )
         st.session_state.user_email = user_email
+        
+        # Question box
+        st.markdown("**Ask a Question (Optional):**")
+        user_question = st.text_area(
+            "Question",
+            placeholder="e.g., What meetings did I miss logging? How many billable hours am I missing?",
+            height=80,
+            help="Ask specific questions about this consultant's timesheet",
+            label_visibility="collapsed"
+        )
     
     with col2:
         st.markdown("### Quick Actions")
@@ -489,6 +511,16 @@ with tab4:
     if diagram_path.exists():
         st.divider()
         st.subheader("🏗️ System Architecture")
+        
+        # Check if architecture image exists
+        image_path = Path(__file__).parent / "diagrams" / "architecture.png"
+        if image_path.exists():
+            st.markdown("**Visual Diagram:**")
+            st.image(str(image_path), caption="Multi-Agent System Architecture", use_container_width=True)
+            st.divider()
+        
+        # Show the mermaid code
+        st.markdown("**Mermaid Code (copy to [Mermaid Live Editor](https://mermaid.live)):**")
         with open(diagram_path) as f:
             diagram_content = f.read()
             st.code(diagram_content, language="mermaid")

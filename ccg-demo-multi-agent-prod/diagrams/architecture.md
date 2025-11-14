@@ -1,4 +1,3 @@
-```mermaid
 graph TB
     subgraph UI_Layer["User Interface Layer"]
         User["👤 User/<br/>Consultant"]
@@ -113,27 +112,3 @@ graph TB
     style CalData fill:#E6E6FA
     style TimeData fill:#E6E6FA
     style AuditData fill:#FFE6E6
-```
-
-**Multi-Agent Architecture - PRODUCTION VERSION**
-
-This diagram shows the production architecture with approval workflow:
-
-**Key Enhancements:**
-- **✅ Approval Agent** - NEW agent for processing approved/rejected suggestions
-- **💾 Write Tools** - `add_timesheet_entry()` writes approved entries to timesheet
-- **📋 Audit Log** - Complete audit trail in `audit_log.json`
-- **🔄 Approval Workflow** - User reviews suggestions before writing
-
-**Workflow:**
-1. **Analysis Phase**: Calendar + Timesheet agents run in parallel
-2. **Suggestion Phase**: Suggestion agent proposes missing entries
-3. **Approval Phase**: User reviews and approves/rejects via UI
-4. **Write Phase**: Approval agent writes approved entries to timesheet
-5. **Audit Phase**: All operations logged with timestamps and user attribution
-
-**Security:**
-- All write operations require user approval
-- Complete audit trail maintained
-- Immutable log (add-only, no deletions)
-- User attribution for all actions
