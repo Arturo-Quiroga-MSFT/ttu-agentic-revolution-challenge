@@ -179,8 +179,8 @@ def parse_suggestions(suggestion_text):
 
 
 # Main header
-st.markdown('<h1 style="color: #00008B;">🤖 Multi-Agent Timesheet Assistant</h1>', unsafe_allow_html=True)
-st.markdown('<p style="color: #1E90FF; font-weight: bold; font-size: 18px;">PRODUCTION VERSION - Analyze, Approve, and Write Timesheet Entries</p>', unsafe_allow_html=True)
+st.markdown('<h1 style="color: #00008B;">🤖🤖🤖 Intelligent Time & Expense Capture</h1>', unsafe_allow_html=True)
+st.markdown('<p style="color: #1E90FF; font-weight: bold; font-size: 18px;">PRODUCTION VERSION - Addressing All Challenge Focus Areas: Context Awareness • Proactive Suggestions • Conversational Interface</p>', unsafe_allow_html=True)
 
 # Create tabs
 tab1, tab2, tab3, tab4 = st.tabs([
@@ -495,6 +495,58 @@ with tab3:
 # Tab 4: About
 with tab4:
     st.header("About Multi-Agent Timesheet Assistant (PRODUCTION)")
+    
+    # Problem Statement Section
+    st.markdown("""
+    ### 🎯 The Business Challenge
+    
+    **Contoso Consulting Group faces critical pain points** that directly impact revenue and operational efficiency:
+    
+    - 📅 **Consultants dislike manual time entry** — often delayed or incomplete
+    - ✈️ **Missing travel time and misclassified expenses** reduce billable accuracy
+    - ⏰ **Managers spend hours reconciling** inconsistent reports
+    - 📊 **Leadership lacks real-time visibility** into project utilization
+    - ⚠️ **Compliance issues with client contracts** due to data errors
+    
+    **Financial Impact:** Firms lose **10-15% of billable revenue** annually due to poor time tracking — equivalent to **$2.6M/year** for a 50-person consulting team.
+    """)
+    
+    st.divider()
+    
+    # Solution Coverage Section
+    st.markdown("""
+    ### ✅ Our Comprehensive Solution
+    
+    This production system addresses **ALL THREE focus areas** from the challenge and more:
+    
+    **1️⃣ Context Awareness: Detect missing travel or time entries**
+    - ✅ Cross-references calendar events with timesheet entries
+    - ✅ Identifies all missing billable activities (travel, meetings, client work)
+    - ✅ Understands business rules for billability classification
+    - ✅ Detects partial entries and gaps automatically
+    
+    **2️⃣ Proactive Suggestions: Recommend updates based on schedule or behavior**
+    - ✅ Generates specific suggestions with dates, times, and durations
+    - ✅ Provides clear rationale for each recommendation
+    - ✅ Prioritizes high-value missing time (travel, client meetings)
+    - ✅ Calculates revenue impact of missing entries
+    
+    **3️⃣ Conversational Interface: Let consultants log or confirm entries naturally**
+    - ✅ Natural language question answering
+    - ✅ Interactive approval workflow (approve/reject with one click)
+    - ✅ Multi-turn conversations with context retention
+    - ✅ User-friendly web interface with dropdown selectors
+    
+    **PLUS: Production-Grade Capabilities**
+    - 💾 **Write Operations**: Approved entries written directly to timesheet
+    - 📋 **Complete Audit Trail**: All actions logged for compliance
+    - 💰 **Revenue Impact Calculator**: Quantifies financial benefits
+    - 🔒 **Security & Compliance**: User attribution and immutable logging
+    - ⚡ **Parallel Processing**: Simultaneous agent execution for speed
+    - 👥 **Multi-Consultant Support**: Handles entire consulting team
+    """)
+    
+    st.divider()
     
     st.markdown("""
     ### 🎯 Production Features
