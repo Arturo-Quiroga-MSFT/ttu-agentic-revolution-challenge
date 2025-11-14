@@ -5,11 +5,11 @@
 
 ## � About
 
-**Developer**: Arturo Quiroga  
-**Role**: Cloud Solution Architect - Data & AI, Microsoft  
-**Location**: Toronto, Ontario, Canada
+**Developers**: Arturo Quiroga , Chris Mitchell, Jason Virtue, Diane Phillips 
+**Role**: Cloud Solution Architects - Data & AI, Microsoft  
 
-**Challenge Selection**: For this workshop, I chose the **Contoso Consulting Group (CCG) Time & Expense Tracking** scenario. This challenge focuses on using Agentic AI to automatically detect missing billable time by cross-referencing calendar events with timesheet entries—a common pain point for consulting firms that results in significant revenue leakage. I selected this scenario because it demonstrates real-world business value through intelligent automation, showcases the Microsoft Agent Framework's capabilities with function calling and multi-turn conversations, and addresses a tangible problem that every consulting organization faces.
+
+**Challenge Selection**: For this workshop, we chose the **Contoso Consulting Group (CCG) Time & Expense Tracking** scenario. This challenge focuses on using Agentic AI to automatically detect missing billable time by cross-referencing calendar events with timesheet entries—a common pain point for consulting firms that results in significant revenue leakage. We selected this scenario because it demonstrates real-world business value through intelligent automation, showcases the Microsoft Agent Framework's capabilities with function calling and multi-turn conversations, and addresses a tangible problem that every consulting organization faces.
 
 ## �🚀 Overview
 
