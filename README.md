@@ -5,7 +5,8 @@
 
 ## � About
 
-**Developers**: Arturo Quiroga , Chris Mitchell, Jason Virtue, Diane Phillips 
+**Developers**: Arturo Quiroga , Chris Mitchell, Jason Virtue, Diane Phillips
+
 **Role**: Cloud Solution Architects - Data & AI, Microsoft  
 
 
