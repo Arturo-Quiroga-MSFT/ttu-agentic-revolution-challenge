@@ -395,6 +395,7 @@ graph TB
 - [ ] Azure Active Directory authentication
 - [ ] Approval workflow via Teams notifications
 - [ ] Email notifications for missing time
+- [ ] **Hybrid orchestration** - Leverage MAF orchestration patterns (Sequential, Parallel, Conditional) for deterministic workflows while retaining orchestrator agent for intelligent decision-making
 
 ### Phase 3: Scale (4-8 weeks)
 - [ ] Manager dashboard with analytics
@@ -403,6 +404,13 @@ graph TB
 - [ ] Audit trail and compliance reporting
 - [ ] Weekly automated reminders
 - [ ] Mobile app integration
+
+### Phase 4: Advanced AI Capabilities (8-12 weeks)
+- [ ] **MAF Group Chat Pattern** - Enable agents to collaborate dynamically on complex scenarios
+- [ ] Predictive analytics for time tracking patterns
+- [ ] Anomaly detection for unusual billing patterns
+- [ ] Natural language policy configuration
+- [ ] Multi-language support for global teams
 
 ## 📚 Documentation
 

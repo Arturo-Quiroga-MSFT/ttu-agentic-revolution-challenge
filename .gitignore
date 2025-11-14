@@ -55,6 +55,9 @@ Test-output.md
 # Azure
 .azure/
 
+# SQL DB Enhancement (not for demo - personal development)
+ccg-sql-enhancement/
+
 # Credentials
 credentials.json
 token.json
