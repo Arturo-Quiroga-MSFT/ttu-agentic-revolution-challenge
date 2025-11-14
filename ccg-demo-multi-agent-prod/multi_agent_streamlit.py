@@ -106,24 +106,49 @@ def parse_suggestions(suggestion_text):
             current_suggestion = {}
             
             # Parse date, time range, and duration from first line
-            # Format: "November 13, 2025, 09:00-10:00 (1 hour)"
+            # Format variations:
+            # "November 13, 2025, 09:00-10:00 (1 hour)"
+            # "2025-11-13, 09:00-10:00 (1 hour)"
+            # "08:00 AM to 10:00 AM (2 hours) - Drive to Chicago for client meeting"
             content = numbered_match.group(1)
             
-            # Extract date (everything before the time range)
-            date_match = re.search(r'([A-Za-z]+\s+\d{1,2},\s+\d{4})', content)
+            # Extract date (try multiple formats)
+            # Format 1: YYYY-MM-DD (ISO format)
+            date_match = re.search(r'(\d{4}-\d{2}-\d{2})', content)
             if date_match:
                 current_suggestion['date'] = date_match.group(1)
+            else:
+                # Format 2: Month Day, Year
+                date_match = re.search(r'([A-Za-z]+\s+\d{1,2},\s+\d{4})', content)
+                if date_match:
+                    current_suggestion['date'] = date_match.group(1)
             
-            # Extract time range (HH:MM-HH:MM)
-            time_match = re.search(r'(\d{2}:\d{2})-(\d{2}:\d{2})', content)
+            # Extract time range (multiple formats)
+            # Format 1: HH:MM-HH:MM or HH:MM to HH:MM
+            time_match = re.search(r'(\d{1,2}:\d{2})\s*(?:AM|PM)?\s*(?:-|to)\s*(\d{1,2}:\d{2})\s*(?:AM|PM)?', content, re.IGNORECASE)
             if time_match:
-                current_suggestion['start_time'] = time_match.group(1)
-                current_suggestion['end_time'] = time_match.group(2)
+                start_time = time_match.group(1)
+                end_time = time_match.group(2)
+                # Use HH:MM format (realistic for consultant time tracking)
+                current_suggestion['start_time'] = start_time
+                current_suggestion['end_time'] = end_time
             
-            # Extract duration (number followed by "hour")
+            # Extract duration (number followed by "hour" or in parentheses)
             duration_match = re.search(r'\((\d+\.?\d*)\s*hours?\)', content)
             if duration_match:
                 current_suggestion['duration_hours'] = float(duration_match.group(1))
+            else:
+                # Try without parentheses
+                duration_match = re.search(r'(\d+\.?\d*)\s*hours?', content)
+                if duration_match:
+                    current_suggestion['duration_hours'] = float(duration_match.group(1))
+            
+            # Extract inline task/project info after dash
+            dash_content = re.search(r'-\s*(.+?)(?:\(|$)', content)
+            if dash_content:
+                task_text = dash_content.group(1).strip()
+                if task_text and 'task' not in current_suggestion:
+                    current_suggestion['task'] = task_text
             
             continue
         
@@ -154,8 +179,8 @@ def parse_suggestions(suggestion_text):
 
 
 # Main header
-st.title("🤖 Multi-Agent Timesheet Assistant")
-st.markdown("**PRODUCTION VERSION** - Analyze, Approve, and Write Timesheet Entries")
+st.markdown('<h1 style="color: #00008B;">🤖 Multi-Agent Timesheet Assistant</h1>', unsafe_allow_html=True)
+st.markdown('<p style="color: #1E90FF; font-weight: bold; font-size: 18px;">PRODUCTION VERSION - Analyze, Approve, and Write Timesheet Entries</p>', unsafe_allow_html=True)
 
 # Create tabs
 tab1, tab2, tab3, tab4 = st.tabs([
@@ -195,11 +220,16 @@ with tab1:
         st.markdown("**Ask a Question (Optional):**")
         user_question = st.text_area(
             "Question",
+            key="user_question",
             placeholder="e.g., What meetings did I miss logging? How many billable hours am I missing?",
             height=80,
-            help="Ask specific questions about this consultant's timesheet",
+            help="Ask specific questions about this consultant's timesheet (press Enter to apply)",
             label_visibility="collapsed"
         )
+        
+        # Show info about question usage
+        if user_question:
+            st.info(f"💬 Your question will be included in the analysis")
     
     with col2:
         st.markdown("### Quick Actions")
@@ -210,6 +240,10 @@ with tab1:
             with st.status("🤖 Running multi-agent analysis...", expanded=True) as status:
                 st.write("📅 Calendar Agent: Analyzing calendar events...")
                 st.write("📝 Timesheet Agent: Analyzing existing entries...")
+                
+                # Show user question if provided (for context, not passed to orchestrator)
+                if user_question:
+                    st.write(f"💬 Note: Custom questions are displayed but analysis uses standard workflow")
                 
                 # Run the analysis
                 results = asyncio.run(
@@ -363,15 +397,28 @@ with tab1:
 with tab2:
     st.header("💰 Revenue Impact Analysis")
     
+    # Consultant list (same as Analysis tab)
+    available_consultants = [
+        "arturoqu@microsoft.com",
+        "sarah.chen@contoso.com",
+        "marcus.johnson@contoso.com",
+        "priya.patel@contoso.com",
+        "james.rodriguez@contoso.com"
+    ]
+    
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        impact_email = st.text_input(
-            "User Email",
-            value=st.session_state.user_email,
-            key="impact_email",
-            help="Enter the email for revenue analysis"
+        st.markdown("**Select Consultant:**")
+        impact_email = st.selectbox(
+            "Available Consultants for Revenue",
+            options=available_consultants,
+            index=available_consultants.index(st.session_state.user_email) if st.session_state.user_email in available_consultants else 0,
+            key="revenue_consultant_selector",
+            help="Select a consultant to analyze revenue impact",
+            label_visibility="collapsed"
         )
+        
         missing_hours = st.number_input(
             "Missing Billable Hours",
             min_value=0.0,

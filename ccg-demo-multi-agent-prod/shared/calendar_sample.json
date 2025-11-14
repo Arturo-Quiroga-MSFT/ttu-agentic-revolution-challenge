@@ -833,5 +833,483 @@
       "Client Meeting",
       "Billable"
     ]
+  },
+  {
+    "id": "cal-039",
+    "title": "Client Meeting - DataCorp AI Strategy",
+    "start": "2025-11-13T09:00:00-05:00",
+    "end": "2025-11-13T10:30:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "sarah.chen@contoso.com"
+    ],
+    "description": "AI strategy planning with DataCorp",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-040",
+    "title": "Flight to Seattle",
+    "start": "2025-11-13T14:00:00-05:00",
+    "end": "2025-11-13T17:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "sarah.chen@contoso.com"
+    ],
+    "description": "Flight SEA001 to Seattle client site",
+    "categories": [
+      "Travel",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-041",
+    "title": "DataCorp Workshop - Cloud Migration",
+    "start": "2025-11-14T09:00:00-05:00",
+    "end": "2025-11-14T12:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "sarah.chen@contoso.com"
+    ],
+    "description": "Cloud migration workshop",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-042",
+    "title": "Client Lunch - DataCorp Team",
+    "start": "2025-11-14T12:00:00-05:00",
+    "end": "2025-11-14T13:30:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "sarah.chen@contoso.com"
+    ],
+    "description": "Lunch with DataCorp engineering team",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-043",
+    "title": "Flight back to Toronto",
+    "start": "2025-11-14T18:00:00-05:00",
+    "end": "2025-11-14T21:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "sarah.chen@contoso.com"
+    ],
+    "description": "Return flight to Toronto",
+    "categories": [
+      "Travel",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-044",
+    "title": "Internal - Team Standup",
+    "start": "2025-11-15T09:00:00-05:00",
+    "end": "2025-11-15T09:30:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "sarah.chen@contoso.com"
+    ],
+    "description": "Daily team sync",
+    "categories": [
+      "Internal"
+    ]
+  },
+  {
+    "id": "cal-045",
+    "title": "Client Call - DataCorp Follow-up",
+    "start": "2025-11-15T14:00:00-05:00",
+    "end": "2025-11-15T15:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "sarah.chen@contoso.com"
+    ],
+    "description": "Post-workshop follow-up",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-046",
+    "title": "Technical Documentation",
+    "start": "2025-11-15T15:30:00-05:00",
+    "end": "2025-11-15T17:30:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "sarah.chen@contoso.com"
+    ],
+    "description": "Architecture documentation for DataCorp",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-047",
+    "title": "Drive to Chicago",
+    "start": "2025-11-13T08:00:00-05:00",
+    "end": "2025-11-13T10:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "marcus.johnson@contoso.com"
+    ],
+    "description": "Drive to Chicago for client meeting",
+    "categories": [
+      "Travel",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-048",
+    "title": "Client Strategy Session - ChiTech",
+    "start": "2025-11-13T11:00:00-05:00",
+    "end": "2025-11-13T13:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "marcus.johnson@contoso.com"
+    ],
+    "description": "Q1 planning session",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-049",
+    "title": "Client Lunch - ChiTech Leadership",
+    "start": "2025-11-13T13:00:00-05:00",
+    "end": "2025-11-13T14:30:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "marcus.johnson@contoso.com"
+    ],
+    "description": "Lunch with ChiTech CEO",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-050",
+    "title": "Afternoon Workshop - Digital Transformation",
+    "start": "2025-11-13T15:00:00-05:00",
+    "end": "2025-11-13T17:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "marcus.johnson@contoso.com"
+    ],
+    "description": "Digital transformation roadmap",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-051",
+    "title": "Drive back to Office",
+    "start": "2025-11-13T17:30:00-05:00",
+    "end": "2025-11-13T19:30:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "marcus.johnson@contoso.com"
+    ],
+    "description": "Return drive",
+    "categories": [
+      "Travel",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-052",
+    "title": "Client Prep - FinServe Co",
+    "start": "2025-11-14T10:00:00-05:00",
+    "end": "2025-11-14T11:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "marcus.johnson@contoso.com"
+    ],
+    "description": "Prep materials for FinServe",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-053",
+    "title": "Client Call - FinServe Co Strategy",
+    "start": "2025-11-14T14:00:00-05:00",
+    "end": "2025-11-14T16:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "marcus.johnson@contoso.com"
+    ],
+    "description": "Strategic planning call",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-054",
+    "title": "Proposal Writing - FinServe Co",
+    "start": "2025-11-14T16:30:00-05:00",
+    "end": "2025-11-14T18:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "marcus.johnson@contoso.com"
+    ],
+    "description": "Proposal for next phase",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-055",
+    "title": "Flight to Boston",
+    "start": "2025-11-13T07:00:00-05:00",
+    "end": "2025-11-13T09:30:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "priya.patel@contoso.com"
+    ],
+    "description": "Flight to Boston for TechStart workshop",
+    "categories": [
+      "Travel",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-056",
+    "title": "Client Onsite - TechStart Cloud Architecture",
+    "start": "2025-11-13T10:30:00-05:00",
+    "end": "2025-11-13T13:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "priya.patel@contoso.com"
+    ],
+    "description": "Cloud architecture design session",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-057",
+    "title": "Client Dinner - TechStart CTO",
+    "start": "2025-11-13T18:00:00-05:00",
+    "end": "2025-11-13T20:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "priya.patel@contoso.com"
+    ],
+    "description": "Dinner with TechStart leadership",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-058",
+    "title": "Technical Workshop - TechStart",
+    "start": "2025-11-14T09:00:00-05:00",
+    "end": "2025-11-14T12:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "priya.patel@contoso.com"
+    ],
+    "description": "Hands-on technical workshop",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-059",
+    "title": "Client Debrief - TechStart",
+    "start": "2025-11-14T13:00:00-05:00",
+    "end": "2025-11-14T14:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "priya.patel@contoso.com"
+    ],
+    "description": "Wrap-up and next steps",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-060",
+    "title": "Flight back to Toronto",
+    "start": "2025-11-14T16:00:00-05:00",
+    "end": "2025-11-14T18:30:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "priya.patel@contoso.com"
+    ],
+    "description": "Return flight",
+    "categories": [
+      "Travel",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-061",
+    "title": "Documentation - TechStart Deliverables",
+    "start": "2025-11-15T10:00:00-05:00",
+    "end": "2025-11-15T12:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "priya.patel@contoso.com"
+    ],
+    "description": "Architecture documentation",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-062",
+    "title": "Client Call - TechStart Q&A",
+    "start": "2025-11-15T15:00:00-05:00",
+    "end": "2025-11-15T16:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "priya.patel@contoso.com"
+    ],
+    "description": "Follow-up Q&A session",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-063",
+    "title": "Flight to Portland",
+    "start": "2025-11-13T06:00:00-05:00",
+    "end": "2025-11-13T09:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "james.rodriguez@contoso.com"
+    ],
+    "description": "Flight to Portland for Portland Tech",
+    "categories": [
+      "Travel",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-064",
+    "title": "Client Workshop - Portland Tech",
+    "start": "2025-11-13T10:00:00-05:00",
+    "end": "2025-11-13T13:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "james.rodriguez@contoso.com"
+    ],
+    "description": "DevOps transformation workshop",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-065",
+    "title": "Client Lunch - Portland Tech Team",
+    "start": "2025-11-13T13:00:00-05:00",
+    "end": "2025-11-13T14:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "james.rodriguez@contoso.com"
+    ],
+    "description": "Team lunch",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-066",
+    "title": "Afternoon Session - Portland Tech",
+    "start": "2025-11-13T14:30:00-05:00",
+    "end": "2025-11-13T17:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "james.rodriguez@contoso.com"
+    ],
+    "description": "Implementation planning",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-067",
+    "title": "Flight back to Toronto",
+    "start": "2025-11-13T19:00:00-05:00",
+    "end": "2025-11-13T22:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "james.rodriguez@contoso.com"
+    ],
+    "description": "Return flight",
+    "categories": [
+      "Travel",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-068",
+    "title": "Internal - Weekly Team Meeting",
+    "start": "2025-11-14T09:00:00-05:00",
+    "end": "2025-11-14T10:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "james.rodriguez@contoso.com"
+    ],
+    "description": "Team sync",
+    "categories": [
+      "Internal"
+    ]
+  },
+  {
+    "id": "cal-069",
+    "title": "Client Deliverables - Portland Tech",
+    "start": "2025-11-14T10:30:00-05:00",
+    "end": "2025-11-14T13:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "james.rodriguez@contoso.com"
+    ],
+    "description": "Creating deliverables",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
+  },
+  {
+    "id": "cal-070",
+    "title": "Client Call - Portland Tech Follow-up",
+    "start": "2025-11-14T15:00:00-05:00",
+    "end": "2025-11-14T16:00:00-05:00",
+    "location": "Various",
+    "attendees": [
+      "james.rodriguez@contoso.com"
+    ],
+    "description": "Post-workshop check-in",
+    "categories": [
+      "Client Meeting",
+      "Billable"
+    ]
   }
 ]

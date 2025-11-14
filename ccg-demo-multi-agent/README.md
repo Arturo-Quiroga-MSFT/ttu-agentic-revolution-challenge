@@ -6,6 +6,8 @@
 
 This directory contains an enhanced **multi-agent architecture** implementation where specialized agents collaborate to identify missing billable time and provide intelligent recommendations.
 
+Last updated: 2025-11-14
+
 ## Architecture
 
 ### Agent Roles

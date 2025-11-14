@@ -75,7 +75,7 @@ This project demonstrates an intelligent AI agent built with **Microsoft Agent F
 │   │   ├── revenue_agent.py          # Revenue impact calculator
 │   │   └── orchestrator_agent.py     # Multi-agent coordinator
 │   ├── shared/                       # Enhanced production data
-│   │   ├── calendar_sample.json      # 53 events for 5 consultants
+│   │   ├── calendar_sample.json      # 85 events, balanced across 5 consultants
 │   │   ├── timesheet_sample.json     # 5 consultants with varied patterns
 │   │   └── audit_log.json            # Approval/rejection audit trail
 │   ├── diagrams/                     # Architecture documentation
@@ -108,9 +108,10 @@ This project demonstrates an intelligent AI agent built with **Microsoft Agent F
 
 **Multi-Agent Production (`ccg-demo-multi-agent-prod/`):** ⭐
 - ✅ Full approval workflow with write capabilities
-- ✅ 5 consultants with rich demo data (53 calendar events)
+- ✅ 5 consultants with balanced demo data (85 calendar events)
 - ✅ Consultant dropdown selector + question box
 - ✅ Approval/rejection with audit trail
+- ✅ HH:MM time format (realistic for consultant tracking)
 - ✅ Enhanced parser for multiple suggestion formats
 - ✅ Revenue impact calculator
 - ✅ Deployed to Azure Container Apps
@@ -247,8 +248,8 @@ graph TB
     end
     
     subgraph Data["Data Layer"]
-        CalData["📁 Calendar Data<br/>53 events, 5 consultants"]
-        TimeData["📁 Timesheet Data<br/>5 consultants"]
+        CalData["📁 Calendar Data<br/>85 events, balanced across 5 consultants"]
+        TimeData["📁 Timesheet Data<br/>5 consultants, HH:MM format"]
         AuditData["📋 Audit Log<br/>Approval history"]
     end
     
@@ -321,7 +322,8 @@ graph TB
 - ✅ Multi-turn conversation
 - ✅ Multi-agent architecture with orchestrator
 - ✅ Approval workflow with audit trail
-- ✅ 5 consultants with rich demo data
+- ✅ 5 consultants with balanced demo data (85 events)
+- ✅ HH:MM time format for realistic tracking
 - ✅ Azure Container Apps deployment
 - ✅ Enhanced UI with dropdowns and question box
 

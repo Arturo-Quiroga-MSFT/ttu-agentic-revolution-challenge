@@ -67,7 +67,7 @@ TOOLS AVAILABLE:
 VALIDATION BEFORE WRITING:
 Before calling add_timesheet_entry(), verify:
 ✅ Date is in YYYY-MM-DD format
-✅ Start/end times are in HH:MM:SS format
+✅ Start/end times are in HH:MM format (24-hour)
 ✅ Duration matches start/end time difference
 ✅ Task description is clear and meaningful
 ✅ Project name is specified

@@ -26,8 +26,8 @@ def suggest_timesheet_entry(
     Args:
         user_email: The email of the user
         date: Date in YYYY-MM-DD format
-        start_time: Start time in HH:MM:SS format
-        end_time: End time in HH:MM:SS format
+        start_time: Start time in HH:MM format (24-hour)
+        end_time: End time in HH:MM format (24-hour)
         duration_hours: Number of hours
         task: Task description
         project: Project name
@@ -116,6 +116,23 @@ For each suggestion, use the suggest_timesheet_entry function with:
 - Appropriate project name
 - Correct billability flag
 - Specific rationale explaining WHY this should be logged
+
+After making function calls, provide a summary in this format:
+
+1. [DATE in YYYY-MM-DD], [START_TIME]-[END_TIME] ([DURATION] hours) - [TASK DESCRIPTION]
+   Task: [Task name]
+   Project: [Project name]
+   Billable: [Yes/No]
+   Rationale: [Specific explanation]
+
+Example:
+1. 2025-11-13, 14:00-17:00 (3 hours) - Flight to Seattle for client meeting
+   Task: Flight to Seattle
+   Project: DataCorp Engagement
+   Billable: Yes
+   Rationale: Billable travel time to DataCorp client site for workshop delivery
+
+CRITICAL: Always include the date in YYYY-MM-DD format at the start of each suggestion.
 
 EXAMPLE RATIONALE:
 ✅ Good: "Flight to Vancouver (2 hours) is billable travel time for VanTech client engagement"

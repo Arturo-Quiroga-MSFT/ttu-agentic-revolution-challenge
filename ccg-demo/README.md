@@ -2,6 +2,8 @@
 
 This folder contains a working **ChatAgent** (Microsoft Agent Framework) demo for the Contoso Consulting Group Time & Expense challenge.
 
+Last updated: 2025-11-14
+
 ## What's inside
 
 - `calendar_sample.json` — sample calendar events for a consultant

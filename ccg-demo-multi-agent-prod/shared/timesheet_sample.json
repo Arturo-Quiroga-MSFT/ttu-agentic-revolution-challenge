@@ -56,6 +56,26 @@
         "task": "Client Workshop - TechCorp",
         "project": "TechCorp AI Implementation",
         "billable": true
+      },
+      {
+        "id": "ts-005",
+        "date": "2025-11-13",
+        "start": "09:00:00",
+        "end": "10:30:00",
+        "duration_hours": 1.5,
+        "task": "Client Meeting - DataCorp AI Strategy",
+        "project": "DataCorp",
+        "billable": true
+      },
+      {
+        "id": "ts-006",
+        "date": "2025-11-14",
+        "start": "09:00:00",
+        "end": "12:00:00",
+        "duration_hours": 3.0,
+        "task": "Client Workshop - Cloud Migration",
+        "project": "DataCorp",
+        "billable": true
       }
     ]
   },
@@ -81,6 +101,16 @@
         "task": "Working Lunch",
         "project": "ChiTech Q1 Planning",
         "billable": true
+      },
+      {
+        "id": "ts-007",
+        "date": "2025-11-13",
+        "start": "15:00:00",
+        "end": "17:00:00",
+        "duration_hours": 2.0,
+        "task": "Workshop - Digital Transformation",
+        "project": "ChiTech Q1 Planning",
+        "billable": true
       }
     ]
   },
@@ -96,6 +126,39 @@
         "task": "Tech Conference",
         "project": "Professional Development",
         "billable": true
+      },
+      {
+        "id": "ts-008",
+        "date": "2025-11-13",
+        "start": "10:30:00",
+        "end": "13:00:00",
+        "duration_hours": 2.5,
+        "task": "Client Onsite - Cloud Architecture",
+        "project": "TechStart",
+        "billable": true
+      },
+      {
+        "id": "ts-009",
+        "date": "2025-11-14",
+        "start": "09:00:00",
+        "end": "12:00:00",
+        "duration_hours": 3.0,
+        "task": "Technical Workshop",
+        "project": "TechStart",
+        "billable": true
+      },
+      {
+        "id": "ts-015",
+        "date": "2025-11-13",
+        "start": "07:00",
+        "end": "10:00",
+        "duration_hours": 3.0,
+        "task": "Flight to Austin",
+        "project": "Tech Conference Travel",
+        "billable": true,
+        "added_by_system": true,
+        "approved_by": "web_ui_user",
+        "created_at": "2025-11-14T10:59:13.412426"
       }
     ]
   },
@@ -130,6 +193,56 @@
         "duration_hours": 6.0,
         "task": "Client Workshop - Portland Tech",
         "project": "Portland Tech Workshop",
+        "billable": true
+      },
+      {
+        "id": "ts-010",
+        "date": "2025-11-13",
+        "start": "06:00:00",
+        "end": "09:00:00",
+        "duration_hours": 3.0,
+        "task": "Flight to Portland",
+        "project": "Portland Tech",
+        "billable": true
+      },
+      {
+        "id": "ts-011",
+        "date": "2025-11-13",
+        "start": "10:00:00",
+        "end": "13:00:00",
+        "duration_hours": 3.0,
+        "task": "Client Workshop - DevOps",
+        "project": "Portland Tech",
+        "billable": true
+      },
+      {
+        "id": "ts-012",
+        "date": "2025-11-13",
+        "start": "13:00:00",
+        "end": "14:00:00",
+        "duration_hours": 1.0,
+        "task": "Client Lunch",
+        "project": "Portland Tech",
+        "billable": true
+      },
+      {
+        "id": "ts-013",
+        "date": "2025-11-13",
+        "start": "14:30:00",
+        "end": "17:00:00",
+        "duration_hours": 2.5,
+        "task": "Implementation Planning",
+        "project": "Portland Tech",
+        "billable": true
+      },
+      {
+        "id": "ts-014",
+        "date": "2025-11-13",
+        "start": "19:00:00",
+        "end": "22:00:00",
+        "duration_hours": 3.0,
+        "task": "Flight back to Toronto",
+        "project": "Portland Tech",
         "billable": true
       }
     ]

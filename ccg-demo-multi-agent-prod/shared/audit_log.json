@@ -1,3 +1,23 @@
 {
-  "entries": []
+  "entries": [
+    {
+      "action": "add_timesheet_entry",
+      "user": "priya.patel@contoso.com",
+      "entry": {
+        "id": "ts-015",
+        "date": "2025-11-13",
+        "start": "07:00",
+        "end": "10:00",
+        "duration_hours": 3.0,
+        "task": "Flight to Austin",
+        "project": "Tech Conference Travel",
+        "billable": true,
+        "added_by_system": true,
+        "approved_by": "web_ui_user",
+        "created_at": "2025-11-14T10:59:13.412426"
+      },
+      "timestamp": "2025-11-14T10:59:13.413424",
+      "approved_by": "web_ui_user"
+    }
+  ]
 }

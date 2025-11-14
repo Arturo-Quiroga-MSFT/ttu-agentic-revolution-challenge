@@ -1,6 +1,6 @@
 ## Agentic Revolution — Findings and Notes
 
-Last updated: 2025-10-31
+Last updated: 2025-11-14
 
 This document captures the findings from the event materials in this repo, plus the steps I used to extract text from the provided presentation. Keep this file as the single-source reference for planning and prep.
 

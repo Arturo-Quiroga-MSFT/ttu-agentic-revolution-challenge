@@ -29,30 +29,49 @@ def add_timesheet_entry(
     for audit purposes.
     
     Args:
-        user_email: The email of the user
+        user_email: The email address of the consultant
         date: Date in YYYY-MM-DD format
-        start_time: Start time in HH:MM:SS format
-        end_time: End time in HH:MM:SS format
-        duration_hours: Number of hours
-        task: Task description
-        project: Project name
-        billable: Whether this is billable
-        approved_by: Who approved this entry (default: "system")
+        start_time: Start time in HH:MM format (24-hour)
+        end_time: End time in HH:MM format (24-hour)
         
     Returns:
         JSON confirmation of the write operation
     """
     timesheet_path = Path(__file__).parent.parent / "shared" / "timesheet_sample.json"
     
-    # Load existing timesheet
+    # Load existing timesheet (array of user objects)
     try:
         with open(timesheet_path, 'r') as f:
             timesheet_data = json.load(f)
     except FileNotFoundError:
-        timesheet_data = {"user": user_email, "entries": []}
+        timesheet_data = []
+    
+    # Find user's timesheet entry in the array
+    user_timesheet = None
+    for user_entry in timesheet_data:
+        if user_entry.get("user") == user_email:
+            user_timesheet = user_entry
+            break
+    
+    # If user doesn't exist, create new user entry
+    if user_timesheet is None:
+        user_timesheet = {"user": user_email, "entries": []}
+        timesheet_data.append(user_timesheet)
+    
+    # Generate new entry ID
+    max_id = 0
+    for user_entry in timesheet_data:
+        for entry in user_entry.get("entries", []):
+            entry_id = entry.get("id", "ts-000")
+            try:
+                id_num = int(entry_id.split('-')[1])
+                max_id = max(max_id, id_num)
+            except (ValueError, IndexError):
+                continue
     
     # Create new entry
     new_entry = {
+        "id": f"ts-{max_id + 1:03d}",
         "date": date,
         "start": start_time,
         "end": end_time,
@@ -65,13 +84,13 @@ def add_timesheet_entry(
         "created_at": datetime.now().isoformat()
     }
     
-    # Append to entries
-    if "entries" not in timesheet_data:
-        timesheet_data["entries"] = []
+    # Append to user's entries
+    if "entries" not in user_timesheet:
+        user_timesheet["entries"] = []
     
-    timesheet_data["entries"].append(new_entry)
+    user_timesheet["entries"].append(new_entry)
     
-    # Write back to file
+    # Write back to file (entire array)
     with open(timesheet_path, 'w') as f:
         json.dump(timesheet_data, f, indent=2)
     

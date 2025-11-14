@@ -1,7 +1,7 @@
 # Updated PowerPoint Slide Content - Multi-Agent Production System
 ## Complete Presentation with Talking Points
 
-**Last Updated**: November 1, 2025  
+**Last Updated**: November 14, 2025  
 **Presenter**: Arturo Quiroga, Cloud Solution Architect - Data & AI, Microsoft  
 **Event**: TTU Agentic Revolution Challenge | November 14, 2025
 
